@@ -10,6 +10,23 @@ class AnswerManager extends Sprite{
 		this.answerObject = answerObject;
 	}
 	
+	public function getQuestion(i:Int){
+		var a = i;
+		if(answerObject == null){
+			trace("NULL ANSWER OBJECT");
+			return "";
+		}
+		if(a >= 0){
+			if(a < answerObject.length)
+			{
+				var data = answerObject[a];
+				return data.question;
+			}
+		return "";
+		}
+		return "";
+	}
+
 	public function debugPrint(){
 		if(answerObject == null){
 			trace("NULL ANSWER OBJECT");

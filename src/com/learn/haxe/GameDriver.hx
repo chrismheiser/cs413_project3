@@ -29,6 +29,9 @@ class GameDriver extends Sprite {
 
 	// Keep track of the stage
 	static var globalStage:Stage = null;
+
+	var buttons:Array<Button> = [];
+	var question:Int = 0;
 	
 	/** Constructor */
 	public function new() {
@@ -74,9 +77,24 @@ class GameDriver extends Sprite {
 	
 	/** Function to be called when we are ready to start the game */
 	private function startGame() {
+		this.removeChildren();
 		var answerManager = new AnswerManager( assets.getObject("questions") );
-		answerManager.debugPrint();
+		//answerManager.debugPrint();
+
+		createQuestion(answerManager, question);
+
 	}
+
+	private function createQuestion(a: AnswerManager, q:Int){
+		var qstn = a.getQuestion(q);
+		var text = new  TextField(stage.stageWidth, stage.stageHeight, qstn);
+		text.x = 300;
+		text.y = 200;
+		text.fontSize = 24;
+		addChild(text);
+		
+	}
+
 	
 	/** Called when the game is over */
 	private function triggerGameOver() {
@@ -101,4 +119,7 @@ class GameDriver extends Sprite {
 	/** Used to keep track of key clicks */
 	private function onClick( event:TouchEvent) {
 	}
+
+	private function createButtons(){}
+
 }
