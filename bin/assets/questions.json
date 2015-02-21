@@ -1,0 +1,29 @@
+[
+    {
+        "question": "The beer was ___ tasty.",
+        "answers": [
+            "very",
+            "yes",
+            "red",
+            "car"
+        ]
+    },
+    {
+        "question": "Monster Hunters ___ the best 3ds game.",
+        "answers": [
+            "is",
+            "glass",
+            "chocolate",
+            "computer"
+        ]
+    },
+    {
+        "question": "A mouse is a type of ___.",
+        "answers": [
+            "rodent",
+            "lizard",
+            "bird",
+            "person"
+        ]
+    }
+]

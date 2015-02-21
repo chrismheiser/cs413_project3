@@ -21,6 +21,8 @@ import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 import starling.text.TextField;
 
+import com.learn.haxe.core.AnswerManager;
+
 class GameDriver extends Sprite {
 	// Global assets manager
 	public static var assets:AssetManager;
@@ -36,7 +38,7 @@ class GameDriver extends Sprite {
 	/** Function used to load in any assets to be used during the game */
 	private function populateAssetManager() {
 		assets = new AssetManager();
-		//assets.enqueue("assets/click.mp3");
+		assets.enqueue("assets/questions.json");
 	}
 
 	/** Function called from the initial driver, sets up the root class */
@@ -67,11 +69,13 @@ class GameDriver extends Sprite {
 	
 	/** Do stuff with the menu screen */
 	private function startScreen() {
-		trace("startScreen();");
+		startGame();
 	}
 	
 	/** Function to be called when we are ready to start the game */
 	private function startGame() {
+		var answerManager = new AnswerManager( assets.getObject("questions") );
+		answerManager.debugPrint();
 	}
 	
 	/** Called when the game is over */
