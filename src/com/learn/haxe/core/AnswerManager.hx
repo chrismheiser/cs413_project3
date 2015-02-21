@@ -11,19 +11,38 @@ class AnswerManager extends Sprite{
 	}
 	
 	public function getQuestion(i:Int){
-		var a = i;
+		var j = i;
 		if(answerObject == null){
 			trace("NULL ANSWER OBJECT");
 			return "";
 		}
-		if(a >= 0){
-			if(a < answerObject.length)
+		if(j >= 0){
+			if(j < answerObject.length)
 			{
-				var data = answerObject[a];
+				var data = answerObject[j];
 				return data.question;
 			}
 		return "";
 		}
+		return "";
+	}
+
+	public function getAnswers(i:Int){
+
+		var r = [];
+		if(answerObject == null){
+			trace("NULL ANSWER OBJECT");
+			return "";
+		}
+		
+
+		for(i in 0...answerObject.length){
+			for(n in 0...answerObject[i].answers.length){
+				trace(answerObject[i].answers[n]);
+			}
+			
+		}
+
 		return "";
 	}
 
