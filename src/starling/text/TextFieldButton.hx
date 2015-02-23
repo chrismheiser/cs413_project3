@@ -30,6 +30,9 @@ class TextFieldButton extends TextField{
 	}
 	
 	private function intersects(x:Float, y:Float):Bool{
+		if(this.stage == null)
+			return false;
+			
 		var global = this.localToGlobal(new Point(this.stage.x, this.stage.y));
 		return(x >= global.x && y >= global.y && x <= (global.x + this.width) && y <= (global.y + this.height));
 	}

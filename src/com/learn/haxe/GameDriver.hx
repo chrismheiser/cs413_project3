@@ -82,10 +82,6 @@ class GameDriver extends Sprite {
 		answerManager.shuffleQuestions();
 		answerManager.y = 100;
 		addChild(answerManager);
-		
-		var input:InputTextField = new InputTextField(200,50,"");
-		input.x = 300;
-		addChild(input);
 	}
 	
 	/** Called when the game is over */
