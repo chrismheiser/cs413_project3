@@ -17,11 +17,15 @@ class TextFieldButton extends TextField{
 		this.baseColor = baseColor;
 		this.highlightColor = highlightColor;
 		this.addEventListener(Event.ADDED_TO_STAGE, addedToStage);
+		this.addEventListener(Event.REMOVED_FROM_STAGE, removedFromStage);
 	}
 	
 	public function addedToStage(){
-		this.removeEventListeners();
 		this.stage.addEventListener(TouchEvent.TOUCH, onTouch);
+	}
+	
+	public function removedFromStage(){
+		this.stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 	}
 	
 	private function intersects(x:Float, y:Float):Bool{
