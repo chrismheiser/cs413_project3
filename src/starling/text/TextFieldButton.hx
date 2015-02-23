@@ -3,6 +3,7 @@ package starling.text;
 import starling.events.TouchEvent;
 import starling.events.Touch;
 import starling.events.Event;
+import flash.geom.Point;
 
 class TextFieldButton extends TextField{
 	var baseColor:UInt;
@@ -29,7 +30,8 @@ class TextFieldButton extends TextField{
 	}
 	
 	private function intersects(x:Float, y:Float):Bool{
-		return(x >= this.x && y >= this.y && x <= (this.x + this.width) && y <= (this.y + this.height));
+		var global = this.localToGlobal(new Point(this.stage.x, this.stage.y));
+		return(x >= global.x && y >= global.y && x <= (global.x + this.width) && y <= (global.y + this.height));
 	}
 	
 	public function onTouch( event:TouchEvent ){

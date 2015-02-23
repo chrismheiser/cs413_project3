@@ -20,6 +20,7 @@ import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 import starling.text.TextField;
+import starling.text.InputTextField;
 import starling.text.TextFieldButton;
 
 import com.learn.haxe.core.AnswerManager;
@@ -79,7 +80,12 @@ class GameDriver extends Sprite {
 		
 		var answerManager = new AnswerManager( assets.getObject("questions") );
 		answerManager.shuffleQuestions();
+		answerManager.y = 100;
 		addChild(answerManager);
+		
+		var input:InputTextField = new InputTextField(200,50,"");
+		input.x = 300;
+		addChild(input);
 	}
 	
 	/** Called when the game is over */
