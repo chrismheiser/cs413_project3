@@ -20,6 +20,7 @@ import flash.media.Sound;
 import flash.media.SoundChannel;
 import flash.media.SoundTransform;
 import starling.text.TextField;
+import starling.text.TextFieldButton;
 
 import com.learn.haxe.core.AnswerManager;
 
@@ -81,7 +82,13 @@ class GameDriver extends Sprite {
 		var answerManager = new AnswerManager( assets.getObject("questions") );
 		//answerManager.debugPrint();
 
-		createQuestion(answerManager, question);
+		var tfButton:TextFieldButton = new TextFieldButton(100, 20, "Hello world!", "Verdana", 12, 0x0, 0xFF0000);
+			tfButton.x = 500;
+			tfButton.y = 500;
+			tfButton.onClick = function( button:TextFieldButton ){
+				trace(button.text);
+			};
+		addChild(tfButton);
 
 	}
 
