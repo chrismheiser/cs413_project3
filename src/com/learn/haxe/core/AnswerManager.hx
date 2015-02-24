@@ -1,6 +1,8 @@
 package com.learn.haxe.core;
 
+import starling.textures.Texture;
 import starling.display.Sprite;
+import starling.display.Image;
 import starling.text.TextField;
 import starling.text.TextFieldButton;
 import starling.events.Event;
@@ -10,10 +12,19 @@ class AnswerManager extends Sprite{
 	var questionIndex = 0;
 	var correctAnswer = "";
 	
-	function new( answerObject:Dynamic ){
+	var healthBar:HealthBar;
+	var questionSprite:Sprite = new Sprite();
+	
+	function new( healthBarTexture:Texture, answerObject:Dynamic ){
 		super();
 		this.answerObject = answerObject;
 		this.addEventListener(Event.ADDED_TO_STAGE, displayNextQuestion);
+		
+		healthBar = new HealthBar(200,40,healthBarTexture);
+		healthBar.y = 50;
+		healthBar.x = 500;
+		addChild(healthBar);
+		addChild(questionSprite);
 	}
 	
 	public function shuffleQuestions(){
@@ -33,7 +44,7 @@ class AnswerManager extends Sprite{
 	
 	public function displayNextQuestion(){
 		if(answerObject != null && answerObject.length > questionIndex){
-			this.removeChildren();
+			questionSprite.removeChildren();
 			
 			// JSON data object
 			var data = answerObject[questionIndex++];
@@ -49,7 +60,7 @@ class AnswerManager extends Sprite{
 				tfQuestion.x = centerX-tfQuestion.width/2;
 				tfQuestion.y = centerY-tfQuestion.height - 75;
 				tfQuestion.border = true;
-				addChild(tfQuestion);
+				questionSprite.addChild(tfQuestion);
 				
 			// Top left button
 			var tfButton:TextFieldButton = new TextFieldButton(100, 20, data.answers[0], "Verdana", 12, 0x0, 0xFF0000);
@@ -57,7 +68,7 @@ class AnswerManager extends Sprite{
 			tfButton.y = centerY-tfButton.height*2.5;
 			tfButton.border = true;
 			tfButton.onClick = buttonClick;
-			addChild(tfButton);	
+			questionSprite.addChild(tfButton);	
 			
 			// Bottom left button
 			tfButton = new TextFieldButton(100, 20, data.answers[1], "Verdana", 12, 0x0, 0xFF0000);
@@ -65,7 +76,7 @@ class AnswerManager extends Sprite{
 			tfButton.y = centerY;
 			tfButton.border = true;
 			tfButton.onClick = buttonClick;
-			addChild(tfButton);	
+			questionSprite.addChild(tfButton);	
 			
 			// Top right button
 			tfButton = new TextFieldButton(100, 20, data.answers[2], "Verdana", 12, 0x0, 0xFF0000);
@@ -73,7 +84,7 @@ class AnswerManager extends Sprite{
 			tfButton.y = centerY-tfButton.height*2.5;
 			tfButton.border = true;
 			tfButton.onClick = buttonClick;
-			addChild(tfButton);	
+			questionSprite.addChild(tfButton);	
 			
 			// Bottom right button
 			tfButton = new TextFieldButton(100, 20, data.answers[3], "Verdana", 12, 0x0, 0xFF0000);
@@ -81,16 +92,18 @@ class AnswerManager extends Sprite{
 			tfButton.y = centerY;
 			tfButton.border = true;
 			tfButton.onClick = buttonClick;
-			addChild(tfButton);	
+			questionSprite.addChild(tfButton);	
 		}
 	}
 
 	public function buttonClick( button:TextFieldButton ){
+		var currentSpan = healthBar.getBarSpan();
+		
 		if(button.text == correctAnswer){
-			trace("Correct!");
+			healthBar.animateBarSpan(currentSpan + 0.1, 0.015);
 			displayNextQuestion();
 		} else {
-			trace("Wrong...");
+			healthBar.animateBarSpan(currentSpan - 0.1, 0.015);
 		}
 	}
 	

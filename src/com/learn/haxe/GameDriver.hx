@@ -48,6 +48,7 @@ class GameDriver extends Sprite {
 	private function populateAssetManager() {
 		assets = new AssetManager();
 		assets.enqueue("assets/questions.json");
+		assets.enqueue("assets/healthBar.png");
 		
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
@@ -94,11 +95,11 @@ class GameDriver extends Sprite {
 		this.removeChildren();
 		
 		// set and display game title
-		gameTitleText = installGameText(0,0, "Hellow :)", "gameFont01", 55);
+		gameTitleText = installGameText(0,0, "Hello :)", "gameFont01", 55);
 		addChild(gameTitleText);
 		
 		// set and display alternate game title
-		var TEMPgameTitleText = installGameText(0,100, "Word! 8", "gameFont02", 55);
+		var TEMPgameTitleText = installGameText(0,100, "World! 8", "gameFont02", 55);
 		addChild(TEMPgameTitleText);
 		
 		// set and display alternate game title
@@ -121,9 +122,8 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
-		var answerManager = new AnswerManager( assets.getObject("questions") );
+		var answerManager = new AnswerManager( assets.getTexture("healthBar"), assets.getObject("questions") );
 		answerManager.shuffleQuestions();
-		answerManager.y = 100;
 		addChild(answerManager);
 		
 		return;
