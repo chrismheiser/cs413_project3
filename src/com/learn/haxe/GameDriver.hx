@@ -32,6 +32,13 @@ class GameDriver extends Sprite {
 	// Keep track of the stage
 	static var globalStage:Stage = null;
 	
+	// Global Game vars
+	// text vars
+	public var gameTitleText:TextField;
+	// interactive buttons
+	public var startButton:Button;
+	public var mainMenuButton:Button;
+	
 	/** Constructor */
 	public function new() {
 		super();
@@ -41,6 +48,14 @@ class GameDriver extends Sprite {
 	private function populateAssetManager() {
 		assets = new AssetManager();
 		assets.enqueue("assets/questions.json");
+		
+		// game font
+		assets.enqueue("assets/font.fnt");
+		assets.enqueue("assets/font.png");
+		
+		// game buttons
+		assets.enqueue("assets/startButton.png");
+		assets.enqueue("assets/mainMenuButton.png");
 	}
 
 	/** Function called from the initial driver, sets up the root class */
@@ -71,17 +86,35 @@ class GameDriver extends Sprite {
 	
 	/** Do stuff with the menu screen */
 	private function startScreen() {
-		startGame();
+		// clear the stage
+		this.removeChildren();
+		
+		// set and display game title
+		gameTitleText = installGameText(0,0, "Hellow :)");
+		addChild(gameTitleText);
+		
+		// set and add start game button
+		startButton = installStartGameButton(460, 590);
+		addChild(startButton);
+		
+		return;
 	}
 	
 	/** Function to be called when we are ready to start the game */
 	private function startGame() {
+		// clear the stage
 		this.removeChildren();
+						
+		// set and add mainMenu button
+		mainMenuButton = installMainMenuButton(570 , 600);
+		addChild(mainMenuButton);
 		
 		var answerManager = new AnswerManager( assets.getObject("questions") );
 		answerManager.shuffleQuestions();
 		answerManager.y = 100;
 		addChild(answerManager);
+		
+		return;
 	}
 	
 	/** Called when the game is over */
@@ -109,5 +142,56 @@ class GameDriver extends Sprite {
 	}
 
 	private function createButtons(){}
+	
+	private function installGameText(x:Int, y:Int, myText:String) {
+		// local var
+		var gameTitle:TextField;
+		
+		// display player's current score
+		gameTitle = new TextField(globalStage.stageWidth, 100, myText);
+		gameTitle.fontSize = 35;
+		//gameTitle.bold = true;
+		//gameTitle.color = 0x505050;
+		gameTitle.x = x;
+		gameTitle.y = y;
+		gameTitle.fontName = "font";
+		
+		return gameTitle;
+	}
+	
+	/** Install game tutorial button at (x,y) coordinates */
+	function installStartGameButton(x:Int, y:Int) {
+		var sgButton:Button;
+						
+		sgButton = new Button(GameDriver.assets.getTexture("startButton"));
+		sgButton.x = x;
+		sgButton.y = y;
+		
+		// On button press, display game screen
+		sgButton.addEventListener(Event.TRIGGERED, function() {
+			// start the game
+			startGame();
+		});
+		
+		// Return start game button
+		return sgButton;
+	}
+	
+	/** Install main menu button at (x,y) coordinates */
+	function installMainMenuButton(x:Int, y:Int) {		
+		var mmButton:Button;
+		
+		// Make main menu button and set location
+		mmButton = new Button(GameDriver.assets.getTexture("mainMenuButton"));
+		mmButton.x = x;
+		mmButton.y = y;
+
+		mmButton.addEventListener(Event.TRIGGERED, function(){
+			startScreen();
+		});
+		
+		// Return main menu button
+		return mmButton;
+	}
 
 }
