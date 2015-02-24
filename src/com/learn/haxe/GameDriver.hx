@@ -50,8 +50,8 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/questions.json");
 		
 		// game font
-		assets.enqueue("assets/font.fnt");
-		assets.enqueue("assets/font.png");
+		assets.enqueue("assets/gameFont01.fnt");
+		assets.enqueue("assets/gameFont01.png");
 		
 		// game buttons
 		assets.enqueue("assets/startButton.png");
@@ -154,7 +154,7 @@ class GameDriver extends Sprite {
 		//gameTitle.color = 0x505050;
 		gameTitle.x = x;
 		gameTitle.y = y;
-		gameTitle.fontName = "font";
+		gameTitle.fontName = "gameFont01";
 		
 		return gameTitle;
 	}
