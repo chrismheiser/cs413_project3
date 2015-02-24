@@ -90,7 +90,7 @@ class GameDriver extends Sprite {
 		this.removeChildren();
 		
 		// set and display game title
-		gameTitleText = installGameText(0,0, "Hellow :)");
+		gameTitleText = installGameText(0,0, "Hellow :)", 55);
 		addChild(gameTitleText);
 		
 		// set and add start game button
@@ -143,18 +143,18 @@ class GameDriver extends Sprite {
 
 	private function createButtons(){}
 	
-	private function installGameText(x:Int, y:Int, myText:String) {
+	private function installGameText(x:Int, y:Int, myText:String, fontsize:Int) {
 		// local var
 		var gameTitle:TextField;
 		
 		// display player's current score
 		gameTitle = new TextField(globalStage.stageWidth, 100, myText);
-		gameTitle.fontSize = 35;
+		gameTitle.fontName = "gameFont01";
+		gameTitle.fontSize = fontsize;
 		//gameTitle.bold = true;
-		//gameTitle.color = 0x505050;
+		gameTitle.color = 0xffffff;
 		gameTitle.x = x;
 		gameTitle.y = y;
-		gameTitle.fontName = "gameFont01";
 		
 		return gameTitle;
 	}
