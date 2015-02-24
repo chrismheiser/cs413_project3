@@ -52,6 +52,10 @@ class GameDriver extends Sprite {
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
 		assets.enqueue("assets/gameFont01.png");
+		assets.enqueue("assets/gameFont02.fnt");
+		assets.enqueue("assets/gameFont02.png");
+		assets.enqueue("assets/gameFont03.fnt");
+		assets.enqueue("assets/gameFont03.png");
 		
 		// game buttons
 		assets.enqueue("assets/startButton.png");
@@ -90,8 +94,16 @@ class GameDriver extends Sprite {
 		this.removeChildren();
 		
 		// set and display game title
-		gameTitleText = installGameText(0,0, "Hellow :)", 55);
+		gameTitleText = installGameText(0,0, "Hellow :)", "gameFont01", 55);
 		addChild(gameTitleText);
+		
+		// set and display alternate game title
+		var TEMPgameTitleText = installGameText(0,100, "Word! 8", "gameFont02", 55);
+		addChild(TEMPgameTitleText);
+		
+		// set and display alternate game title
+		var TEMP1gameTitleText = installGameText(0,200, "All work and no play makes Jack a dull boy!", "gameFont03", 35);
+		addChild(TEMP1gameTitleText);
 		
 		// set and add start game button
 		startButton = installStartGameButton(460, 590);
@@ -143,14 +155,14 @@ class GameDriver extends Sprite {
 
 	private function createButtons(){}
 	
-	private function installGameText(x:Int, y:Int, myText:String, fontsize:Int) {
+	private function installGameText(x:Int, y:Int, myText:String, myFont:String, myFontsize:Int) {
 		// local var
 		var gameTitle:TextField;
 		
 		// display player's current score
 		gameTitle = new TextField(globalStage.stageWidth, 100, myText);
-		gameTitle.fontName = "gameFont01";
-		gameTitle.fontSize = fontsize;
+		gameTitle.fontName = myFont;
+		gameTitle.fontSize = myFontsize;
 		//gameTitle.bold = true;
 		gameTitle.color = 0xffffff;
 		gameTitle.x = x;
