@@ -101,9 +101,11 @@ class AnswerManager extends Sprite{
 		
 		if(button.text == correctAnswer){
 			healthBar.animateBarSpan(currentSpan + 0.1, 0.015);
+			healthBar.flashColor(0x00FF00, 30);
 			displayNextQuestion();
 		} else {
 			healthBar.animateBarSpan(currentSpan - 0.1, 0.015);
+			healthBar.flashColor(0xFF0000, 30);
 		}
 	}
 	

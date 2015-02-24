@@ -20,6 +20,15 @@ class HealthBar extends starling.display.Image {
 		setBarSpan(0.5);
 	}
 	
+	public function flashColor(color:UInt, ms:Int){
+		var tempColor:UInt = this.color;
+		this.color = color;
+		
+		haxe.Timer.delay(function(){
+			this.color = tempColor;
+		}, Math.round(ms));
+	}
+	
 	public function animateBarSpan(targetPercent:Float, changeAmount:Float){
 		if(targetPercent < 0)
 			targetPercent = 0;
