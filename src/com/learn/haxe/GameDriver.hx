@@ -39,6 +39,10 @@ class GameDriver extends Sprite {
 	public var startButton:Button;
 	public var mainMenuButton:Button;
 	
+	// Sound variables
+		var musicChannel:SoundChannel;	
+		var transform:SoundTransform;
+		
 	/** Constructor */
 	public function new() {
 		super();
@@ -61,6 +65,9 @@ class GameDriver extends Sprite {
 		// game buttons
 		assets.enqueue("assets/startButton.png");
 		assets.enqueue("assets/mainMenuButton.png");
+		
+		// sounds 
+		assets.enqueue("assets/game_music.mp3");
 	}
 
 	/** Function called from the initial driver, sets up the root class */
@@ -75,7 +82,16 @@ class GameDriver extends Sprite {
 		// Start loading in the assets
 		assets.loadQueue(function onProgress(ratio:Int) {
 			if (ratio == 1) {
+			
+				//Start the game music
+				musicChannel = assets.playSound("game_music");
+				musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+				transform = new SoundTransform(0.3, 0);
+				musicChannel.soundTransform = transform;
+				
 				startScreen();
+				
+				
 				
 				// Fade out the loading screen since everything is loaded
 				Starling.juggler.tween(startup.loadingBitmap, 1, {
@@ -206,4 +222,11 @@ class GameDriver extends Sprite {
 		return mmButton;
 	}
 
+	/** Start the music after it's finished playing */
+	function soundComplete(e:flash.events.Event)
+	{
+		musicChannel = assets.playSound("game_music");
+		musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+		musicChannel.soundTransform = transform;
+	}
 }
