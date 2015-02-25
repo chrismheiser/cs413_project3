@@ -61,6 +61,8 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/gameFont02.png");
 		assets.enqueue("assets/gameFont03.fnt");
 		assets.enqueue("assets/gameFont03.png");
+		assets.enqueue("assets/gameFont04.fnt");
+		assets.enqueue("assets/gameFont04.png");
 		
 		// game buttons
 		assets.enqueue("assets/startButton.png");
@@ -117,16 +119,8 @@ class GameDriver extends Sprite {
 		this.removeChildren();
 		
 		// set and display game title
-		gameTitleText = installGameText(0,0, "Hello :)", "gameFont01", 55);
+		gameTitleText = installGameText(0,0, "What is the word?", "gameFont04", 55);
 		addChild(gameTitleText);
-		
-		// set and display alternate game title
-		var TEMPgameTitleText = installGameText(0,100, "World! 8", "gameFont02", 55);
-		addChild(TEMPgameTitleText);
-		
-		// set and display alternate game title
-		var TEMP1gameTitleText = installGameText(0,200, "All work and no play makes Jack a dull boy!", "gameFont03", 35);
-		addChild(TEMP1gameTitleText);
 		
 		// set and add start game button
 		startButton = installStartGameButton(460, 590);
