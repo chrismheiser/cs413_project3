@@ -7,6 +7,8 @@ import starling.text.TextField;
 import starling.text.TextFieldButton;
 import starling.events.Event;
 
+import flash.media.Sound;
+
 class AnswerManager extends Sprite{
 	var answerObject:Dynamic;
 	var questionIndex = 0;
@@ -15,7 +17,11 @@ class AnswerManager extends Sprite{
 	var healthBar:HealthBar;
 	var questionSprite:Sprite = new Sprite();
 	
-	function new( healthBarTexture:Texture, answerObject:Dynamic ){
+	// sounds
+	var rightAnsSound : Sound;
+	var wrongAnsSound : Sound;
+	
+	function new( healthBarTexture:Texture, answerObject:Dynamic, rightAnswerSound:Sound, wrongAnswerSound:Sound ){
 		super();
 		this.answerObject = answerObject;
 		this.addEventListener(Event.ADDED_TO_STAGE, displayNextQuestion);
@@ -25,6 +31,9 @@ class AnswerManager extends Sprite{
 		healthBar.x = 500;
 		addChild(healthBar);
 		addChild(questionSprite);
+		
+		rightAnsSound = rightAnswerSound;
+		wrongAnsSound = wrongAnswerSound;
 	}
 	
 	public function shuffleQuestions(){
@@ -100,10 +109,12 @@ class AnswerManager extends Sprite{
 		var currentSpan = healthBar.getBarSpan();
 		
 		if(button.text == correctAnswer){
+			rightAnsSound.play();
 			healthBar.animateBarSpan(currentSpan + 0.1, 0.015);
 			healthBar.flashColor(0x00FF00, 30);
 			displayNextQuestion();
 		} else {
+			wrongAnsSound.play();
 			healthBar.animateBarSpan(currentSpan - 0.1, 0.015);
 			healthBar.flashColor(0xFF0000, 30);
 		}

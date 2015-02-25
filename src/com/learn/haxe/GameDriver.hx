@@ -68,6 +68,9 @@ class GameDriver extends Sprite {
 		
 		// sounds 
 		assets.enqueue("assets/game_music.mp3");
+		assets.enqueue("assets/click.mp3");
+		assets.enqueue("assets/right_answer.mp3");
+		assets.enqueue("assets/wrong_answer.mp3");
 	}
 
 	/** Function called from the initial driver, sets up the root class */
@@ -107,6 +110,9 @@ class GameDriver extends Sprite {
 	
 	/** Do stuff with the menu screen */
 	private function startScreen() {
+		// click sound
+		assets.playSound("click");
+		
 		// clear the stage
 		this.removeChildren();
 		
@@ -131,6 +137,9 @@ class GameDriver extends Sprite {
 	
 	/** Function to be called when we are ready to start the game */
 	private function startGame() {
+		// click sound
+		assets.playSound("click");
+		
 		// clear the stage
 		this.removeChildren();
 						
@@ -138,7 +147,8 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
-		var answerManager = new AnswerManager( assets.getTexture("healthBar"), assets.getObject("questions") );
+		var answerManager = new AnswerManager( assets.getTexture("healthBar"), assets.getObject("questions"), assets.getSound("right_answer"), 
+											   assets.getSound("wrong_answer") );
 		answerManager.shuffleQuestions();
 		addChild(answerManager);
 		
@@ -167,6 +177,7 @@ class GameDriver extends Sprite {
 
 	/** Used to keep track of key clicks */
 	private function onClick( event:TouchEvent) {
+	
 	}
 
 	private function createButtons(){}
