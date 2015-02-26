@@ -1,6 +1,8 @@
 package com.learn.haxe.core;
 
 import starling.textures.Texture;
+import starling.display.Quad;
+
 import starling.display.Sprite;
 import starling.display.Image;
 import starling.text.TextField;
@@ -40,12 +42,16 @@ class InteractiveAnswerManager extends Sprite{
 	var gravity:Float = 0.25;
 	
 	// Text field answer list
-	var answerList:List<TextField> = new List<TextField>();
+	var answerList:List<Sprite> = new List<Sprite>();
 	
 	// Display assets
 	var plane:Image;
 	var healthBar:HealthBar;
 	var questionText:TextField = null;
+	
+	// Callback when the game is over
+	public var gameOver:Bool->Void = null;
+	public var textColor:UInt = 0x000000;
 	
 	
 	function new( healthBarTexture:Texture, planeTexture:Texture, answerObject:Dynamic, rightAnswerSound:Sound, wrongAnswerSound:Sound ){
@@ -149,7 +155,7 @@ class InteractiveAnswerManager extends Sprite{
 	private function hitDetection(){
 		for(answer in answerList){
 			if(answer.bounds.intersects(plane.bounds)){
-				processAnswer(answer.text);
+				processAnswer(cast(answer.getChildAt(1),TextField).text);
 				this.removeChild(answer,true);
 				answerList.remove(answer);
 			}
@@ -164,18 +170,30 @@ class InteractiveAnswerManager extends Sprite{
 		
 		// Fade out the loading screen since everything is loaded
 		var answer = new TextField(100,30,text);
+			answer.bold = true;
+			answer.color = textColor;
 			answer.border = true;
-			answer.x = this.stage.stageWidth;
-			answer.y = Math.random()*(this.stage.stageHeight-100) + 50;
-			addChild(answer);
+		
+		var bg = new Quad(answer.width, answer.height);
+			bg.alpha = 0.7;
+			bg.color = 0;
+		
+		var container = new Sprite();
+		container.addChild(bg);
+		container.addChild(answer);
+		container.x = this.stage.stageWidth;
+		container.y = Math.random()*(this.stage.stageHeight-100) + 50;
 			
-		answerList.add(answer);
-		Starling.juggler.tween(answer, 8, {
+		addChild(container);
+		
+		answerList.add(container);
+		
+		Starling.juggler.tween(container, 8, {
 			transition: Transitions.LINEAR,
 			x: -100,
 			onComplete: function() {
-				this.removeChild(answer,true);
-				answerList.remove(answer);
+				this.removeChild(container,true);
+				answerList.remove(container);
 			}
 		});
 	}
@@ -192,6 +210,11 @@ class InteractiveAnswerManager extends Sprite{
 			wrongAnsSound.play();
 			healthBar.animateBarSpan(currentSpan - 0.1, 0.015);
 			healthBar.flashColor(0xFF0000, 30);
+			
+			if(healthBar.getBarSpan() < 0.1 && gameOver != null){
+				gameOver(false);
+			}
+		
 		}
 	};
 	
@@ -211,7 +234,12 @@ class InteractiveAnswerManager extends Sprite{
 	}
 	
 	public function displayNextQuestion(){
-		if(answerObject != null && answerObject.length-1 > questionIndex){
+		if(answerObject != null){
+			if(answerObject.length-1 == questionIndex){
+				gameOver(true);
+				return;
+			}
+				
 			if(questionText != null)
 				removeChild(questionText);
 				
@@ -225,6 +253,8 @@ class InteractiveAnswerManager extends Sprite{
 			questionText = new TextField(400,35,data.question);
 			questionText.x = centerX - questionText.width/2;
 			questionText.y = centerY - questionText.height/2;
+			questionText.color = textColor;
+			questionText.bold = true;
 			addChild(questionText);
 		}
 	}

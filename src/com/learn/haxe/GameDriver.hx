@@ -150,15 +150,19 @@ class GameDriver extends Sprite {
 		addChild(mainMenuButton);
 		
 		startCityLevel();
-		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), assets.getSound("right_answer"), 
-											   assets.getSound("wrong_answer") );
+		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
+			assets.getSound("right_answer"), assets.getSound("wrong_answer") );
+		
+		answerManager.textColor = 0xFFFFFF;
+		answerManager.gameOver = triggerGameOver;
 		answerManager.shuffleQuestions();
 		addChild(answerManager);		
 		return;
 	}
 	
 	/** Called when the game is over */
-	private function triggerGameOver() {
+	private function triggerGameOver(wonGame:Bool) {
+		trace(wonGame);
 	}
 	
 	/** Restart the game */
@@ -253,7 +257,7 @@ class GameDriver extends Sprite {
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .05, true));
+		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .005, true));
 		layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
 		
 
