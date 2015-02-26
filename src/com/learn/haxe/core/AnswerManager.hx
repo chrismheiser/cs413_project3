@@ -62,7 +62,7 @@ class AnswerManager extends Sprite{
 			
 			// Center coordinates
 			var centerX = this.stage.stageWidth/2;
-			var centerY = this.stage.stageHeight/2;
+			var centerY = this.stage.stageHeight/2 + 180;
 
 			// Question text field
 			var tfQuestion:TextField = new TextField(600,50,data.question,"Verdana");

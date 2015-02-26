@@ -1,6 +1,7 @@
 ﻿package com.learn.haxe;
 
 import starling.animation.Tween;
+import starling.animation.Transitions;
 import starling.display.MovieClip;
 import starling.textures.Texture;
 import starling.display.Sprite;
@@ -38,7 +39,12 @@ class GameDriver extends Sprite {
 	// interactive buttons
 	public var startButton:Button;
 	public var mainMenuButton:Button;
-	
+
+	//Plane variables
+	public var plane:Image;
+	var pTween:Tween;
+
+
 	// Sound variables
 		var musicChannel:SoundChannel;	
 		var transform:SoundTransform;
@@ -52,7 +58,9 @@ class GameDriver extends Sprite {
 	private function populateAssetManager() {
 		assets = new AssetManager();
 		assets.enqueue("assets/questions.json");
-		assets.enqueue("assets/healthBar.png");
+		assets.enqueue("assets/textures.png");
+		assets.enqueue("assets/textures.xml");
+
 		
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
@@ -141,10 +149,20 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
-		var answerManager = new AnswerManager( assets.getTexture("healthBar"), assets.getObject("questions"), assets.getSound("right_answer"), 
+		var answerManager = new AnswerManager( GameDriver.assets.getTexture("healthBar"), assets.getObject("questions"), assets.getSound("right_answer"), 
 											   assets.getSound("wrong_answer") );
 		answerManager.shuffleQuestions();
 		addChild(answerManager);
+
+		plane = new Image(GameDriver.assets.getTexture("plane"));
+		plane.x = 350;
+		plane.y = 150;
+		addChild(plane);
+
+		pTween = new Tween(plane,3, Transitions.EASE_OUT_IN_ELASTIC);
+		pTween.animate("y", plane.y + 30);
+		pTween.repeatCount = 0;
+		Starling.juggler.add(pTween);
 		
 		return;
 	}
