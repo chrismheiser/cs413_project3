@@ -149,6 +149,7 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
+		startCityLevel();
 		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), assets.getSound("right_answer"), 
 											   assets.getSound("wrong_answer") );
 		answerManager.shuffleQuestions();
@@ -225,5 +226,38 @@ class GameDriver extends Sprite {
 		musicChannel = assets.playSound("game_music");
 		musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
 		musicChannel.soundTransform = transform;
+	}
+
+/*
+	function startFieldLevel(){
+
+		//each level has a set of layers that needs to be created before the
+		//levelbackground is created
+		var layers:Array<BackgroundLayer> = new Array();
+		layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
+		layers.push(new BackgroundLayer(assets.getTexture("fieldBG"), 0, true));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsBackground"), 5, false));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsForeground"), 10, false));
+		layers.push(new BackgroundLayer(assets.getTexture("grass"), 12, false));
+
+		var fieldBG = new LevelBackground(layers);
+
+		addChild(fieldBG);
+	
+
+	}
+	*/
+
+	function startCityLevel(){
+
+		//each level has a set of layers that needs to be created before the
+		//levelbackground is created
+		var layers:Array<BackgroundLayer> = new Array();
+		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), 0, true));
+		layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
+		
+
+		var cityBG = new LevelBackground(layers);
+		addChild(cityBG);
 	}
 }
