@@ -11,21 +11,21 @@ class HealthBar extends starling.display.Image {
 	var maxWidth:Int;
 	var fillPercent:Float = 1.0;
 	var animationTimer:Timer = null;
+	public var defaultColor:UInt;
 	
 	function new(width:Int, height:Int, texture:Texture){
 		super(texture);
-		
+		defaultColor = color;
 		this.height = height;
 		this.width = maxWidth = width;
 		setBarSpan(0.5);
 	}
 	
 	public function flashColor(color:UInt, ms:Int){
-		var tempColor:UInt = this.color;
 		this.color = color;
 		
 		haxe.Timer.delay(function(){
-			this.color = tempColor;
+			this.color = defaultColor;
 		}, Math.round(ms));
 	}
 	

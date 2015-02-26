@@ -67,8 +67,11 @@ class InteractiveAnswerManager extends Sprite{
 		plane.pivotY = plane.width/2;
 		
 		healthBar = new HealthBar(200,40,healthBarTexture);
+		healthBar.defaultColor = healthBar.color;
 		healthBar.y = 50;
 		healthBar.x = 500;
+		
+		
 		addChild(healthBar);
 		addChild(plane);
 		
@@ -154,7 +157,7 @@ class InteractiveAnswerManager extends Sprite{
 	private function spawnAnswer(){
 		// Choose the text for the word...
 		var answers = answerObject[questionIndex].answers;
-		var text = (Math.round(Math.random()*6)!=-1) ? answers[0] : answers[Math.round(Math.random()*(answers.length-2))+1];
+		var text = (Math.floor(Math.random()*6)==0) ? answers[0] : answers[Math.round(Math.random()*(answers.length-2))+1];
 		
 		// Fade out the loading screen since everything is loaded
 		var answer = new TextField(100,30,text);
