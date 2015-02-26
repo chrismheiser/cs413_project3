@@ -34,5 +34,94 @@
             "bird",
             "person"
         ]
+    },
+        {
+        "question": "Airplanes wouldn't be able to fly without the ___ of airfoil shaped wings..",
+        "answers": [
+            "effect",
+            "affect",
+            "red",
+            "car"
+        ]
+    },    {
+        "question": "Statistically, airplanes are one of the ___ ways to travel.",
+        "answers": [
+            "safest",
+            "safeliest",
+            "more safer",
+            "safely"
+        ]
+    },    {
+        "question": "Do you think airplanes are the ___.",
+        "answers": [
+            "coolest",
+            "most cooler",
+            "cool",
+            "cooling"
+        ]
+    },    {
+        "question": "The first airplanes ___ very fast.",
+        "answers": [
+            "weren't",
+            "werent",
+            "aren't",
+            "wouldn't"
+        ]
+    },    {
+        "question": "___ isn't very much room for each passenger on an airplane.",
+        "answers": [
+            "There",
+            "They're",
+            "Their",
+            "There's"
+        ]
+    },    {
+        "question": "It can ___ a long time to learn how to fly an airplane.",
+        "answers": [
+            "take",
+            "took",
+            "takes",
+            "taken"
+        ]
+    },    {
+        "question": "An airplane can fly ___ than a helicopter.",
+        "answers": [
+            "faster",
+            "more fast",
+            "more faster",
+            "fastest"
+        ]
+    },    {
+        "question": "Planes ___ allowed to fly over some areas.",
+        "answers": [
+            "aren't",
+            "ain't",
+            "arent",
+            "can't"
+        ]
+    },    {
+        "question": "Some planes are ___ than other planes.",
+        "answers": [
+            "smaller",
+            "more smaller",
+            "smallest",
+            "very smaller"
+        ]
+    },    {
+        "question": "Flying can be really ___!",
+        "answers": [
+            "fun",
+            "funner",
+            "funnest",
+            "funniest"
+        ]
+    },    {
+        "question": "Airplanes can't fly in space ___ they need air to fly.",
+        "answers": [
+            "because",
+            "for",
+            "cuz",
+            "but"
+        ]
     }
 ]
