@@ -92,11 +92,14 @@ class InteractiveAnswerManager extends Sprite{
 		if(keyMap.get( K_UP )){
 			vy -= 0.5;
 		}
-		 
+
+		//keeps the plane on the screen
+		checkOutOfBounds();
+
 		// Apply the movements
 		plane.x += vx;
-		plane.y += vy;		
-		
+		plane.y += vy;	
+	
 		// Apply the rotation
 		var ry:Float = (Math.abs(vy) > 10) ? vy/Math.abs(vy) : vy/10;
 		plane.rotation = (Math.PI/16)*ry;
@@ -242,5 +245,20 @@ class InteractiveAnswerManager extends Sprite{
 			
 			trace("");
 		}
+	}
+
+	private function checkOutOfBounds(){
+		//resets velocity if plane is out of bounds
+		if(plane.y < 0) {
+			vy = 1;
+		} else if (plane.y > (stage.stageHeight - plane.height)){
+			vy = -1;
+		}
+		if (plane.x < 0){
+			vx = 1;
+		} else if (plane.x > (stage.stageWidth - plane.width)){
+			vx = -1;
+		}
+		
 	}
 }
