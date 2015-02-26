@@ -7,13 +7,13 @@ import starling.textures.Texture;
 
 class BackgroundLayer extends Sprite{
 
-	public var speed:Int;
+	public var speed:Float;
 	private var image1:Image;
 	private var image2:Image;
 
 	//to create a layer, give the constructor a texture, a speed, and
 	//whether or not the layer is alighned with the top or the bottom of the screen
-	public function new(texture:Texture, speed:Int, top:Bool){
+	public function new(texture:Texture, speed:Float, top:Bool){
 		super();
 		this.speed = speed;
 		this.image1 = new Image(texture);

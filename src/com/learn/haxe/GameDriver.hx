@@ -253,7 +253,7 @@ class GameDriver extends Sprite {
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), 0, true));
+		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .05, true));
 		layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
 		
 

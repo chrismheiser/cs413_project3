@@ -29,7 +29,7 @@ class LevelBackground extends Sprite{
 
 		//move each layer on every frame based on its speed
 		for(i in 0...layers.length){
-			layers[i].x -= Math.ceil(layers[i].speed);
+			layers[i].x -= layers[i].speed;
 
 			if (layers[i].x < -stage.stageWidth){
 				layers[i].x = 0;
