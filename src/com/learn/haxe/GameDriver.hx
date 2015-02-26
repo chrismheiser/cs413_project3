@@ -24,7 +24,7 @@ import starling.text.TextField;
 import starling.text.InputTextField;
 import starling.text.TextFieldButton;
 
-import com.learn.haxe.core.AnswerManager;
+import com.learn.haxe.core.*;
 
 class GameDriver extends Sprite {
 	// Global assets manager
@@ -149,21 +149,10 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
-		var answerManager = new AnswerManager( GameDriver.assets.getTexture("healthBar"), assets.getObject("questions"), assets.getSound("right_answer"), 
+		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), assets.getSound("right_answer"), 
 											   assets.getSound("wrong_answer") );
 		answerManager.shuffleQuestions();
-		addChild(answerManager);
-
-		plane = new Image(GameDriver.assets.getTexture("plane"));
-		plane.x = 350;
-		plane.y = 150;
-		addChild(plane);
-
-		pTween = new Tween(plane,3, Transitions.EASE_OUT_IN_ELASTIC);
-		pTween.animate("y", plane.y + 30);
-		pTween.repeatCount = 0;
-		Starling.juggler.add(pTween);
-		
+		addChild(answerManager);		
 		return;
 	}
 	
@@ -177,21 +166,6 @@ class GameDriver extends Sprite {
 		startGame();
 	}
 	
-	/** Used to keep track of when a key is unpressed */
-	private function keyUp(event:KeyboardEvent):Void{
-		var keyCode = event.keyCode;
-	}
-	
-	/** Used to keep track when a key is pressed */
-	private function keyDown(event:KeyboardEvent){
-		var keyCode = event.keyCode;
-	}
-
-	/** Used to keep track of key clicks */
-	private function onClick( event:TouchEvent) {
-	
-	}
-
 	private function createButtons(){}
 	
 	private function installGameText(x:Int, y:Int, myText:String, myFont:String, myFontsize:Int) {
