@@ -261,4 +261,8 @@ class InteractiveAnswerManager extends Sprite{
 		}
 		
 	}
+
+	public function getHealthBar(){
+		return this.healthBar;
+	}
 }
