@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="fonts.png">
+	<!--
+	Created with ShoeBox
+	http://renderhjs.net/shoebox/
+	-->
+	<SubTexture name="gameFont01.png"	x="0"	y="1016"	width="1025"	height="507" frameX="-2" frameY="-2" frameWidth="1029" frameHeight="511"/>
+	<SubTexture name="gameFont02.png"	x="0"	y="1524"	width="1025"	height="507" frameX="-2" frameY="-2" frameWidth="1029" frameHeight="511"/>
+	<SubTexture name="gameFont03.png"	x="0"	y="0"	width="1025"	height="507" frameX="-2" frameY="-2" frameWidth="1029" frameHeight="511"/>
+	<SubTexture name="gameFont04.png"	x="0"	y="508"	width="1025"	height="507" frameX="-2" frameY="-2" frameWidth="1029" frameHeight="511"/>
+	<SubTexture name="gameFont05.png"	x="1026"	y="0"	width="1002"	height="508" frameX="-2" frameY="-2" frameWidth="1006" frameHeight="512"/>
+</TextureAtlas>

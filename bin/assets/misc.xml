@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="misc.png">
+	<!--
+	Created with ShoeBox
+	http://renderhjs.net/shoebox/
+	-->
+	<SubTexture name="creditsButton.png"	x="145"	y="1860"	width="129"	height="120" frameX="-0" frameY="-0" frameWidth="129" frameHeight="120"/>
+	<SubTexture name="creditsScreen.png"	x="0"	y="722"	width="1280"	height="720" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="720"/>
+	<SubTexture name="healthBar.png"	x="0"	y="1819"	width="200"	height="40" frameX="-0" frameY="-0" frameWidth="200" frameHeight="40"/>
+	<SubTexture name="mainMenuButton.png"	x="0"	y="1860"	width="144"	height="120" frameX="-0" frameY="-0" frameWidth="144" frameHeight="120"/>
+	<SubTexture name="plane.png"	x="0"	y="1443"	width="356"	height="187" frameX="-0" frameY="-0" frameWidth="356" frameHeight="187"/>
+	<SubTexture name="planeTurbine.png"	x="0"	y="1631"	width="356"	height="187" frameX="-0" frameY="-0" frameWidth="356" frameHeight="187"/>
+	<SubTexture name="startButton.png"	x="357"	y="1443"	width="129"	height="120" frameX="-0" frameY="-0" frameWidth="129" frameHeight="120"/>
+	<SubTexture name="tutorialButton.png"	x="275"	y="1819"	width="129"	height="120" frameX="-0" frameY="-0" frameWidth="129" frameHeight="120"/>
+	<SubTexture name="tutorialScreen.png"	x="0"	y="0"	width="1280"	height="721" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="721"/>
+</TextureAtlas>

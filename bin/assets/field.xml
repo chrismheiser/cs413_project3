@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="field.png">
+	<!--
+	Created with ShoeBox
+	http://renderhjs.net/shoebox/
+	-->
+	<SubTexture name="clouds2.png"	x="0"	y="1094"	width="1187"	height="224" frameX="-0" frameY="-0" frameWidth="1187" frameHeight="224"/>
+	<SubTexture name="fieldBG.png"	x="0"	y="373"	width="1280"	height="720" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="720"/>
+	<SubTexture name="grass.png"	x="0"	y="261"	width="1280"	height="111" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="111"/>
+	<SubTexture name="hillsBackground.png"	x="0"	y="100"	width="1280"	height="160" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="160"/>
+	<SubTexture name="hillsForeground.png"	x="0"	y="0"	width="1280"	height="99" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="99"/>
+	<SubTexture name="hillsForeground.png"	x="0"	y="0"	width="1280"	height="99" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="99"/>
+</TextureAtlas>

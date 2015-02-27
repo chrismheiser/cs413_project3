@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="city.png">
+	<!--
+	Created with ShoeBox
+	http://renderhjs.net/shoebox/
+	-->
+	<SubTexture name="city.png"	x="0"	y="755"	width="1099"	height="338" frameX="-99" frameY="-382" frameWidth="1280" frameHeight="720"/>
+	<SubTexture name="road.png"	x="0"	y="721"	width="1280"	height="33" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="33"/>
+	<SubTexture name="spaceBG.png"	x="0"	y="0"	width="1280"	height="720" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="720"/>
+</TextureAtlas>

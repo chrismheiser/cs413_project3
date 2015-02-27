@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="forest.png">
+	<!--
+	Created with ShoeBox
+	http://renderhjs.net/shoebox/
+	-->
+	<SubTexture name="forestBG.png"	x="0"	y="821"	width="1280"	height="720" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="720"/>
+	<SubTexture name="forestFloor.png"	x="0"	y="1542"	width="1280"	height="88" frameX="-0" frameY="-0" frameWidth="1280" frameHeight="88"/>
+	<SubTexture name="forestTrees.png"	x="0"	y="1631"	width="1266"	height="292" frameX="-0" frameY="-1" frameWidth="1280" frameHeight="293"/>
+	<SubTexture name="mountHood.png"	x="0"	y="0"	width="1641"	height="820" frameX="-0" frameY="-0" frameWidth="1641" frameHeight="820"/>
+</TextureAtlas>
