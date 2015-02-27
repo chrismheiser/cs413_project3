@@ -1,4 +1,4 @@
-﻿package com.learn.haxe;
+package com.learn.haxe;
 
 import starling.animation.Tween;
 import starling.animation.Transitions;
@@ -126,7 +126,7 @@ class GameDriver extends Sprite {
 		addChild(alphaQuad);
 		
 		// Set and display game title
-		gameTitleText = installGameText(0,0, "'Plain' Word Game", "gameFont04", 55);
+		gameTitleText = installGameText(0,0, "Pilot Training", "gameFont04", 55);
 		addChild(gameTitleText);
 		
 		// Set and add start game button
@@ -161,11 +161,11 @@ class GameDriver extends Sprite {
 		}
 		
 		// Set and add mainMenu button
-		mainMenuButton = installMainMenuButton(stage.stageWidth-70 , 10);
-		mainMenuButton.width = mainMenuButton.height = 60;
+		mainMenuButton = installMainMenuButton(stage.stageWidth-100 , 10);
+		mainMenuButton.width = mainMenuButton.height = 80;
 		addChild(mainMenuButton);
 		
-		answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), 
+		answerManager = new InteractiveAnswerManager(assets.getTexture("healthBar"), 
 			assets.getTexture("plane")		, assets.getObject("questions"), 
 			assets.getSound("right_answer") , assets.getSound("wrong_answer") );
 		
@@ -209,7 +209,7 @@ class GameDriver extends Sprite {
 
 	/** Display the rules menu */
 	private function viewTutorial() {
-		tutorialScreen = new Image(GameDriver.assets.getTexture("tutorialScreen"));
+		tutorialScreen = new Image(assets.getTexture("tutorialScreen"));
 		addChild(tutorialScreen);
 	
 		// Set and add mainMenu button
@@ -220,7 +220,7 @@ class GameDriver extends Sprite {
 	
 	/** Function to be called when looking at the credits menu*/
 	private function viewCredits() {
-		creditsScreen = new Image(GameDriver.assets.getTexture("creditsScreen"));
+		creditsScreen = new Image(assets.getTexture("creditsScreen"));
 		addChild(creditsScreen);
 	
 		// Set and add mainMenu button
@@ -260,7 +260,7 @@ class GameDriver extends Sprite {
 	function installStartGameButton(x:Int, y:Int) {
 		var sgButton:Button;
 						
-		sgButton = new Button(GameDriver.assets.getTexture("startButton"));
+		sgButton = new Button(assets.getTexture("startButton"));
 		sgButton.x = x;
 		sgButton.y = y;
 		
@@ -275,7 +275,7 @@ class GameDriver extends Sprite {
 	function installTutorialButton(x:Int, y:Int) {
 		var tButton:Button;
 						
-		tButton = new Button(GameDriver.assets.getTexture("tutorialButton"));
+		tButton = new Button(assets.getTexture("tutorialButton"));
 		tButton.x = x;
 		tButton.y = y;
 		
@@ -291,7 +291,7 @@ class GameDriver extends Sprite {
 	function installCreditsButton(x:Int, y:Int) {
 		var cButton:Button;
 						
-		cButton = new Button(GameDriver.assets.getTexture("creditsButton"));
+		cButton = new Button(assets.getTexture("creditsButton"));
 		cButton.x = x;
 		cButton.y = y;
 		
@@ -307,7 +307,7 @@ class GameDriver extends Sprite {
 		var mmButton:Button;
 		
 		// Make main menu button and set location
-		mmButton = new Button(GameDriver.assets.getTexture("mainMenuButton"));
+		mmButton = new Button(assets.getTexture("mainMenuButton"));
 		mmButton.x = x;
 		mmButton.y = y;
 	
@@ -368,6 +368,11 @@ class GameDriver extends Sprite {
 	/** Function used to load in any assets to be used during the game */
 	private function populateAssetManager() {
 		assets = new AssetManager();
+		
+		
+		assets.enqueue("assets/misc.xml");
+		assets.enqueue("assets/misc.png");
+		
 		assets.enqueue("assets/questions.json");
 		assets.enqueue("assets/spaceBG.png");
 		assets.enqueue("assets/city.png");
@@ -408,5 +413,6 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/click.mp3");
 		assets.enqueue("assets/right_answer.mp3");
 		assets.enqueue("assets/wrong_answer.mp3");
+
 	}
 }
