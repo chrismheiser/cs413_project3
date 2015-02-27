@@ -122,6 +122,15 @@ class GameDriver extends Sprite {
 					onComplete: function() {
 					startup.removeChild(startup.loadingBitmap);
 				}});
+				
+				// Fade out the plane in loading screen since everything is loaded
+				Starling.juggler.tween(startup.loadingPlaneBitmap, 1, {
+					transition: Transitions.EASE_OUT,
+					delay: 3,
+					alpha: 0,
+					onComplete: function() {
+					startup.removeChild(startup.loadingPlaneBitmap);
+				}});
 			}
 		});
 	}

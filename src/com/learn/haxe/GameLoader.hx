@@ -6,11 +6,15 @@ import flash.geom.Rectangle;
 import starling.core.Starling;
 
 @:bitmap("bin/assets/loadingScreen.png")
-class LoadingBitmapData extends flash.display.BitmapData {}
+class LoadingBitmapData extends flash.display.BitmapData { }
+
+@:bitmap("bin/assets/plane.png")
+class LoadingPlaneBitmapData extends flash.display.BitmapData {}
 
 class GameLoader extends Sprite {
 
     public var loadingBitmap:Bitmap;
+    public var loadingPlaneBitmap:Bitmap;
     public var startup:Sprite;
 
     function new() {
@@ -23,6 +27,12 @@ class GameLoader extends Sprite {
         loadingBitmap.height = flash.Lib.current.stage.stageHeight;
         loadingBitmap.smoothing = true;
         addChild(loadingBitmap);
+		
+		loadingPlaneBitmap = new Bitmap(new LoadingPlaneBitmapData(0, 0));
+        loadingPlaneBitmap.x = 362;
+        loadingPlaneBitmap.y = 266;
+        loadingPlaneBitmap.smoothing = true;
+        addChild(loadingPlaneBitmap);
 
         flash.Lib.current.stage.addEventListener(flash.events.Event.RESIZE,
             function(e:flash.events.Event) {
