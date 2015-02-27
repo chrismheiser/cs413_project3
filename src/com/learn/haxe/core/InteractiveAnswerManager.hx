@@ -7,6 +7,7 @@ import starling.display.Sprite;
 import starling.display.Image;
 import starling.text.TextField;
 import starling.text.TextFieldButton;
+import starling.text.TextFieldAutoSize;
 import starling.events.Event;
 import starling.events.EnterFrameEvent;
 import starling.events.KeyboardEvent;
@@ -192,6 +193,7 @@ class InteractiveAnswerManager extends Sprite{
 			answer.border = false;
 			answer.fontName = "gameFont04";
 			answer.fontSize = 32;
+			answer.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 		
 		var bg = new Quad(answer.width, answer.height);
 			bg.alpha = 0.0;
