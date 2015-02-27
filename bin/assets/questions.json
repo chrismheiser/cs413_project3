@@ -2,7 +2,7 @@
     {
         "question": "The Quick Brown Fox ___ over the fence.",
         "answers": [
-            "jumps",
+            "jumped",
             "has jumping",
             "jump",
             "jumper"
@@ -13,26 +13,26 @@
         "answers": [
             "very",
             "yes",
-            "red",
-            "car"
+            "no",
+            "such"
         ]
     },
     {
-        "question": "Monster Hunters ___ the best 3ds game.",
+        "question": "Monster Hunter ___ the best 3ds game.",
         "answers": [
             "is",
-            "glass",
-            "chocolate",
-            "computer"
+            "hasn't",
+            "the",
+            "yes"
         ]
     },
     {
         "question": "A mouse is a type of ___.",
         "answers": [
             "rodent",
-            "lizard",
-            "bird",
-            "person"
+            "rodents",
+            "rodented",
+            "rodenting"
         ]
     },
         {
@@ -40,21 +40,21 @@
         "answers": [
             "effect",
             "affect",
-            "red",
-            "car"
+            "effected",
+            "affected"
         ]
     },    {
         "question": "Statistically, airplanes are one of the ___ ways to travel.",
         "answers": [
             "safest",
             "safeliest",
-            "more safer",
+            "bestest",
             "safely"
         ]
     },    {
-        "question": "Do you think airplanes are the ___.",
+        "question": "Don't you think airplanes are the ___?",
         "answers": [
-            "coolest",
+            "best",
             "most cooler",
             "cool",
             "cooling"
@@ -87,7 +87,7 @@
         "question": "An airplane can fly ___ than a helicopter.",
         "answers": [
             "faster",
-            "more fast",
+            "fastier",
             "more faster",
             "fastest"
         ]
@@ -122,6 +122,22 @@
             "for",
             "cuz",
             "but"
+        ]
+    }, 	{
+        "question": "Palmer is ___ of the best CS professors.",
+        "answers": [
+            "one",
+            "two",
+            "three",
+            "fourty two"
+        ]
+    },	{
+        "question": "C is the ___ programming language.",
+        "answers": [
+            "best",
+            "potatoey",
+            "bestest",
+            "greatiest"
         ]
     }
 ]
