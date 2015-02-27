@@ -135,7 +135,7 @@ class GameDriver extends Sprite {
 		this.removeChildren();
 		
 		// set and display game title
-		gameTitleText = installGameText(0,0, "What is the word?", "gameFont04", 55);
+		gameTitleText = installGameText(0,0, "Plain Word Game", "gameFont04", 55);
 		addChild(gameTitleText);
 		
 		// set and add start game button
