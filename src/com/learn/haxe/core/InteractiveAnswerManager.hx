@@ -242,7 +242,7 @@ class InteractiveAnswerManager extends Sprite{
 			fontName = "gameFont02";
 		}
 		else {
-			fontName = "gameFont03";
+			fontName = "gameFont04";
 		}
 		
 		return fontName;
@@ -305,20 +305,23 @@ class InteractiveAnswerManager extends Sprite{
 			var centerY = this.stage.stageHeight/2;
 			
 			var questionText = new TextField(450,40,data.question);
+				questionText.fontName = "gamefont03";
 				questionText.autoSize = "center";
-				questionText.color = textColor;
+				questionText.color = 0xffffff;
 				questionText.bold = true;
+				questionText.fontSize = 36;
+				questionText.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 				addChild(questionText);
 			
 			var bg = new Quad(questionText.width, questionText.height);
-				bg.alpha = 0.3;
+				bg.alpha = 0.0;
 				bg.color = 0;
 				
 			var container = new Sprite();
 				container.width = questionText.width;
 				container.height = questionText.height;
 				container.x = centerX - questionText.width/2;
-				container.y = centerY - questionText.height/2;
+				container.y = 75;
 								
 			container.addChild(bg);
 			container.addChild(questionText);
