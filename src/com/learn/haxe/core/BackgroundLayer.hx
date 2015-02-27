@@ -28,7 +28,7 @@ class BackgroundLayer extends Sprite{
 			image2.y = 0;
 		} else {
 			image1.x = 0;
-			image1.y = image1.height;
+			image1.y = 720 -image1.height;
 			image2.x = image1.width;
 			image2.y = image1.y;
 		}

@@ -68,8 +68,23 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/city.png");
 		assets.enqueue("assets/plane.png");
 		assets.enqueue("assets/healthBar.png");
-	
 		
+		assets.enqueue("assets/road.png");
+		assets.enqueue("assets/mountainsFG.png");
+		assets.enqueue("assets/mountainsBG.png");
+		assets.enqueue("assets/grass.png");
+		assets.enqueue("assets/hillsBackground.png");
+		assets.enqueue("assets/hillsForeground.png");
+		assets.enqueue("assets/forestFloor.png");
+		assets.enqueue("assets/desertFloor.png");
+		assets.enqueue("assets/desertBG.png");
+		assets.enqueue("assets/forestBG.png");
+		assets.enqueue("assets/fieldBG.png");
+		assets.enqueue("assets/clouds2.png");
+		assets.enqueue("assets/titleScreen.png");
+		assets.enqueue("assets/forestTrees.png");
+
+
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
 		assets.enqueue("assets/gameFont01.png");
@@ -122,7 +137,7 @@ class GameDriver extends Sprite {
 					onComplete: function() {
 					startup.removeChild(startup.loadingBitmap);
 				}});
-				
+
 				// Fade out the plane in loading screen since everything is loaded
 				Starling.juggler.tween(startup.loadingPlaneBitmap, 1, {
 					transition: Transitions.EASE_OUT,
@@ -166,7 +181,7 @@ class GameDriver extends Sprite {
 		mainMenuButton = installMainMenuButton(570 , 600);
 		addChild(mainMenuButton);
 		
-		startCityLevel();
+		startForestLevel();
 		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
 			assets.getSound("right_answer"), assets.getSound("wrong_answer") );
 		
@@ -249,16 +264,16 @@ class GameDriver extends Sprite {
 		//musicChannel.soundTransform = transform;
 	}
 
-/*
+
 	function startFieldLevel(){
 
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-		layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
 		layers.push(new BackgroundLayer(assets.getTexture("fieldBG"), 0, true));
-		layers.push(new BackgroundLayer(assets.getTexture("hillsBackground"), 5, false));
-		layers.push(new BackgroundLayer(assets.getTexture("hillsForeground"), 10, false));
+		layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsBackground"), 4, false));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsForeground"), 6, false));
 		layers.push(new BackgroundLayer(assets.getTexture("grass"), 12, false));
 
 		var fieldBG = new LevelBackground(layers);
@@ -267,7 +282,24 @@ class GameDriver extends Sprite {
 	
 
 	}
-	*/
+
+	function startDesertLevel(){
+
+		//each level has a set of layers that needs to be created before the
+		//levelbackground is created
+		var layers:Array<BackgroundLayer> = new Array();
+		layers.push(new BackgroundLayer(assets.getTexture("desertBG"), 0, true));
+		layers.push(new BackgroundLayer(assets.getTexture("mountainsBG"), 1, false));
+		layers.push(new BackgroundLayer(assets.getTexture("mountainsFG"), 2, false));
+		layers.push(new BackgroundLayer(assets.getTexture("desertFloor"), 12, false));
+
+		var desertBG = new LevelBackground(layers);
+
+		addChild(desertBG);
+	
+
+	}
+	
 
 	function startCityLevel(){
 
@@ -275,10 +307,27 @@ class GameDriver extends Sprite {
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
 			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .1, true));
-			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, true));
+			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
+			layers.push(new BackgroundLayer(assets.getTexture("road"), 12, false));
 		
 		var cityBG = new LevelBackground(layers);
-			//cityBG.addChild(new Quad(stage.stageWidth, stage.stageHeight, 0x111111));
+
+		addChild(cityBG);
+	}
+
+	function startForestLevel(){
+
+		//each level has a set of layers that needs to be created before the
+		//levelbackground is created
+		var layers:Array<BackgroundLayer> = new Array();
+			layers.push(new BackgroundLayer(assets.getTexture("forestBG"), 0, true));
+			layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
+			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 5, false));
+			layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 8, false));
+			//layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 10, false));
+			
+		
+		var cityBG = new LevelBackground(layers);
 
 		addChild(cityBG);
 	}
