@@ -228,7 +228,7 @@ class InteractiveAnswerManager extends Sprite{
 			healthBar.flashColor(0xFF0000, 30);
 			
 			if(healthBar.getBarSpan() < 0.1 && gameOver != null){
-				gameOver(false);
+				gameOver(true);
 			}
 		
 		}
