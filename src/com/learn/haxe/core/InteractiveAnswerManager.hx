@@ -305,16 +305,16 @@ class InteractiveAnswerManager extends Sprite{
 			var centerY = this.stage.stageHeight/2;
 			
 			var questionText = new TextField(450,40,data.question);
-				questionText.fontName = "gamefont03";
+				//questionText.fontName = "gamefont03";
 				questionText.autoSize = "center";
-				questionText.color = 0xffffff;
+				questionText.color = textColor;
 				questionText.bold = true;
-				questionText.fontSize = 36;
+				questionText.fontSize = 32;
 				questionText.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 				addChild(questionText);
 			
 			var bg = new Quad(questionText.width, questionText.height);
-				bg.alpha = 0.0;
+				bg.alpha = 0.3;
 				bg.color = 0;
 				
 			var container = new Sprite();
