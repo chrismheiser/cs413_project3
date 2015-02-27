@@ -218,8 +218,28 @@ class GameDriver extends Sprite {
 	}
 	
 	/** Called when the game is over */
-	private function triggerGameOver(wonGame:Bool) {
-		trace(wonGame);
+	private function triggerGameOver(looseGame:Bool) {
+		if (looseGame){
+			this.removeChildren();
+
+			var bg = new Image(assets.getTexture("titleScreen"));
+			addChild(bg);
+			var looseText = installGameText(0,100, "You loose!", "gameFont04", 100);
+			addChild(looseText);
+			
+			Starling.juggler.tween(bg, 5, {
+					transition: Transitions.EASE_OUT,
+					delay: 1,
+					alpha: 0,
+				});
+			Starling.juggler.tween(looseText, 5, {
+					transition: Transitions.EASE_OUT,
+					delay: 1,
+					alpha: 0,
+					onComplete: function() {
+					restartGame();
+				}});
+		}
 	}
 	
 	/** Restart the game */
