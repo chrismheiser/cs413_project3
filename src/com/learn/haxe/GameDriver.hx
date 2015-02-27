@@ -25,6 +25,7 @@ import starling.text.TextField;
 import starling.text.InputTextField;
 import starling.text.TextFieldButton;
 
+
 import com.learn.haxe.core.*;
 
 class GameDriver extends Sprite {
@@ -176,12 +177,25 @@ class GameDriver extends Sprite {
 		
 		// clear the stage
 		this.removeChildren();
-						
+		
+		//randomlt start one of the levels
+		var rand = Math.floor(Math.random() * 4);
+		if (rand == 0){
+			startCityLevel();
+		} else if (rand == 1){
+			startForestLevel();
+		}else if (rand == 2){
+			startDesertLevel();
+		}else{
+			startFieldLevel();
+		}
+		
+
 		// set and add mainMenu button
-		mainMenuButton = installMainMenuButton(570 , 600);
+		mainMenuButton = installMainMenuButton(10 , 10);
 		addChild(mainMenuButton);
 		
-		startForestLevel();
+		
 		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
 			assets.getSound("right_answer"), assets.getSound("wrong_answer") );
 		
@@ -306,7 +320,7 @@ class GameDriver extends Sprite {
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .1, true));
+			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), 1, true));
 			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
 			layers.push(new BackgroundLayer(assets.getTexture("road"), 12, false));
 		
