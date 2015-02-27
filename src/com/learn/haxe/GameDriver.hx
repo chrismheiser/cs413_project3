@@ -9,7 +9,6 @@ import starling.utils.AssetManager;
 import starling.display.Image;
 import starling.display.Quad;
 import starling.core.Starling;
-import starling.animation.Transitions;
 import starling.events.KeyboardEvent;
 import starling.events.TouchEvent;
 import starling.events.TouchPhase;
@@ -142,25 +141,26 @@ class GameDriver extends Sprite {
 				//musicChannel.soundTransform = transform;
 				
 				startScreen();
-				
-				
-				
-				// Fade out the loading screen since everything is loaded
-				Starling.juggler.tween(startup.loadingBitmap, 1, {
-					transition: Transitions.EASE_OUT,
-					delay: 1,
-					alpha: 0,
-					onComplete: function() {
-					startup.removeChild(startup.loadingBitmap);
-				}});
 
 				// Fade out the plane in loading screen since everything is loaded
 				Starling.juggler.tween(startup.loadingPlaneBitmap, 1, {
 					transition: Transitions.EASE_OUT,
+					x: 1080,
+					delay: 2,
+					alpha: 0,
+					onComplete: function() {
+					
+						startup.loadingPlaneBitmap.x = 25;
+						//startup.removeChild(startup.loadingPlaneBitmap);
+				}});
+				
+				// Fade out the loading screen since everything is loaded
+				Starling.juggler.tween(startup.loadingBitmap, 1, {
+					transition: Transitions.EASE_OUT,
 					delay: 3,
 					alpha: 0,
 					onComplete: function() {
-					startup.removeChild(startup.loadingPlaneBitmap);
+					startup.removeChild(startup.loadingBitmap);
 				}});
 			}
 		});
