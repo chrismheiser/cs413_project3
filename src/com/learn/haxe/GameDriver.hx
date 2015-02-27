@@ -171,58 +171,34 @@ class GameDriver extends Sprite {
 	
 	/** Called when the game is over */
 	private function triggerGameOver(winGame:Bool) {
+		this.removeChildren();
+		restartGame();
+		answerManager.paused = true;
+		
+		var displayText:TextField = null;
+		
 		if (!winGame){
-			this.removeChildren();
-			restartGame();
-			answerManager.paused = true;
-			
-			var bg = new Image(assets.getTexture("titleScreen"));
-			addChild(bg);
-			
-			loseText = installGameText(0, 325, "You lose!", "gameFont01", 65);
-			addChild(loseText);
-			
-			Starling.juggler.tween(bg, 2, {
-				transition: Transitions.EASE_OUT,
-				delay: 1,
-				alpha: 0,
-				onComplete: function(){
-					answerManager.paused = false;
-				}
-			});
-
-			Starling.juggler.tween(loseText, 2, {
-				transition: Transitions.EASE_OUT,
-				delay: 1,
-				alpha: 0
-			});
-			
+			displayText = installGameText(0, 325, "You lose!", "gameFont01", 65);	
 		} else {
-			this.removeChildren();
-			restartGame();
-			answerManager.paused = true;
-
-			var bg = new Image(assets.getTexture("titleScreen"));
-			addChild(bg);
-			
-			winText = installGameText(0,325, "You Win!", "gameFont04", 65);
-			addChild(winText);
-			
-			Starling.juggler.tween(bg, 2, {
-				transition: Transitions.LINEAR,
-				delay: 1,
-				alpha: 0,
-				onComplete: function(){
-					answerManager.paused = false;
-				}
-			});
-				
-			Starling.juggler.tween(winText, 2, {
-				transition: Transitions.EASE_OUT,
-				delay: 1,
-				alpha: 0
-			});
+			displayText = installGameText(0,325, "You Win!", "gameFont04", 65);
 		}
+		
+		var container = new Sprite();
+		var bg = new Image(assets.getTexture("titleScreen"));
+		
+		container.addChild(bg);
+		container.addChild(displayText);
+		addChild(container);
+		
+		Starling.juggler.tween(container, 2, {
+			transition: Transitions.EASE_OUT,
+			delay: 1,
+			alpha: 0,
+			onComplete: function(){
+				answerManager.paused = false;
+				container.removeFromParent(true);
+			}
+		});
 	}
 
 	/** Display the rules menu */
@@ -321,7 +297,7 @@ class GameDriver extends Sprite {
 		mmButton.x = x;
 		mmButton.y = y;
 	
-	// On button press, display the main menu
+		// On button press, display the main menu
 		mmButton.addEventListener(Event.TRIGGERED, startScreen);
 		
 		// Return main menu button
