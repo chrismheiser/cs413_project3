@@ -307,7 +307,7 @@ class InteractiveAnswerManager extends Sprite{
 					Starling.juggler.tween(fadesInBG, 1, {
 						transition: Transitions.EASE_IN,
 						delay: 1,
-						alpha: 1,
-					}});
+						alpha: 1
+					});}});
 		}
 }
