@@ -29,8 +29,8 @@ class GameLoader extends Sprite {
         addChild(loadingBitmap);
 		
 		loadingPlaneBitmap = new Bitmap(new LoadingPlaneBitmapData(0, 0));
-        loadingPlaneBitmap.x = 362;
-        loadingPlaneBitmap.y = 266;
+        loadingPlaneBitmap.x = 380;
+        loadingPlaneBitmap.y = 130;
         loadingPlaneBitmap.smoothing = true;
         addChild(loadingPlaneBitmap);
 

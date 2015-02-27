@@ -38,10 +38,17 @@ class GameDriver extends Sprite {
 	// Global Game vars
 	// text vars
 	public var gameTitleText:TextField;
+	
 	// interactive buttons
 	public var startButton:Button;
 	public var mainMenuButton:Button;
-
+	public var creditsButton:Button;
+	public var tutorialButton:Button;
+	
+	// menu screens
+	public var creditsScreen:Image;
+	public var tutorialScreen:Image;
+	
 	//Plane variables
 	public var plane:Image;
 	var pTween:Tween;
@@ -84,7 +91,9 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/clouds2.png");
 		assets.enqueue("assets/titleScreen.png");
 		assets.enqueue("assets/forestTrees.png");
-
+		assets.enqueue("assets/tutorialScreen.png");
+		assets.enqueue("assets/creditsScreen.png");
+		
 
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
@@ -99,7 +108,9 @@ class GameDriver extends Sprite {
 		// game buttons
 		assets.enqueue("assets/startButton.png");
 		assets.enqueue("assets/mainMenuButton.png");
-		
+		assets.enqueue("assets/creditsButton.png");
+		assets.enqueue("assets/tutorialButton.png");
+
 		// sounds 
 		assets.enqueue("assets/game_music.mp3");
 		assets.enqueue("assets/click.mp3");
@@ -162,7 +173,7 @@ class GameDriver extends Sprite {
 		//var titleScreen = new Image(assets.getTexture("titleScreen"));
 		//addChild(titleScreen);
 		
-		startDesertLevel();
+		startForestLevel();
 		
 		var alphaQuad = new Quad(stage.stageWidth, stage.stageHeight);
 			alphaQuad.color = 0x888899;
@@ -175,19 +186,16 @@ class GameDriver extends Sprite {
 		addChild(gameTitleText);
 		
 		// set and add start game button
-		startButton = installStartGameButton(460, 590);
+		startButton = installStartGameButton(350, 550);
 		addChild(startButton);
 		
-		tutorialButton = installTutorialButton(490, 590);
+		tutorialButton = installTutorialButton(525, 550);
 		addChild(tutorialButton);
 		
-		creditsButton = installCreditsButton(520, 590);
+		creditsButton = installCreditsButton(700, 550);
 		addChild(creditsButton);
-		
-		
-		
-		return;
-	}
+
+		}
 	
 	/** Function to be called when we are ready to start the game */
 	private function startGame() {
@@ -212,7 +220,7 @@ class GameDriver extends Sprite {
 
 		// set and add mainMenu button
 		mainMenuButton = installMainMenuButton(10 , 10);
-		addChild(mainMenuButton2);
+		addChild(mainMenuButton);
 		
 		
 		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
@@ -227,21 +235,21 @@ class GameDriver extends Sprite {
 	}
 	
 	/** Called when the game is over */
-	private function triggerGameOver(looseGame:Bool) {
-		if (looseGame){
+	private function triggerGameOver(loseGame:Bool) {
+		if (loseGame){
 			this.removeChildren();
 
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
-			var looseText = installGameText(0,100, "You loose!", "gameFont04", 100);
-			addChild(looseText);
+			var loseText = installGameText(0,100, "You lose!", "gameFont04", 100);
+			addChild(loseText);
 			
 			Starling.juggler.tween(bg, 5, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
 					alpha: 0,
 				});
-			Starling.juggler.tween(looseText, 5, {
+			Starling.juggler.tween(loseText, 5, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
 					alpha: 0,
@@ -259,15 +267,15 @@ class GameDriver extends Sprite {
 
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
-			var looseText = installGameText(0,100, "You Win!", "gameFont04", 100);
-			addChild(looseText);
+			var loseText = installGameText(0,100, "You Win!", "gameFont04", 100);
+			addChild(loseText);
 			
 			Starling.juggler.tween(bg, 5, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
 					alpha: 0,
 				});
-			Starling.juggler.tween(looseText, 5, {
+			Starling.juggler.tween(loseText, 5, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
 					alpha: 0,
@@ -275,6 +283,28 @@ class GameDriver extends Sprite {
 					startGame();
 				}});
 		}
+	}
+	
+	/** Display the rules menu */
+	private function viewTutorial() {
+		tutorialScreen = new Image(GameDriver.assets.getTexture("tutorialScreen"));
+		addChild(tutorialScreen);
+	
+		// Set and add mainMenu button
+		mainMenuButton = installMainMenuButton(570, 590);
+		addChild(mainMenuButton);
+		return;
+	}
+	
+	/** Function to be called when looking at the credits menu*/
+	private function viewCredits() {
+		creditsScreen = new Image(GameDriver.assets.getTexture("creditsScreen"));
+		addChild(creditsScreen);
+	
+		// Set and add mainMenu button
+		mainMenuButton = installMainMenuButton(570, 590);
+		addChild(mainMenuButton);	
+		return;
 	}
 	
 	/** Restart the game */
@@ -301,7 +331,7 @@ class GameDriver extends Sprite {
 		return gameTitle;
 	}
 	
-	/** Install game tutorial button at (x,y) coordinates */
+	/** Install start game button at (x,y) coordinates */
 	function installStartGameButton(x:Int, y:Int) {
 		var sgButton:Button;
 						
@@ -319,6 +349,43 @@ class GameDriver extends Sprite {
 		return sgButton;
 	}
 	
+	/** Install game tutorial button at (x,y) coordinates */
+	function installTutorialButton(x:Int, y:Int) {
+		var tButton:Button;
+						
+		tButton = new Button(GameDriver.assets.getTexture("tutorialButton"));
+		tButton.x = x;
+		tButton.y = y;
+		
+		// On button press, display tutorial
+		tButton.addEventListener(Event.TRIGGERED, function() {
+			// open tutorial menu
+			viewTutorial();
+		});
+		
+		// Return tutorial button
+		return tButton;
+	}
+	
+	
+	/** Install game tutorial button at (x,y) coordinates */
+	function installCreditsButton(x:Int, y:Int) {
+		var cButton:Button;
+						
+		cButton = new Button(GameDriver.assets.getTexture("creditsButton"));
+		cButton.x = x;
+		cButton.y = y;
+		
+		// On button press, display tutorial
+		cButton.addEventListener(Event.TRIGGERED, function() {
+			// open tutorial menu
+			viewCredits();
+		});
+		
+		// Return tutorial button
+		return cButton;
+	}
+	
 	/** Install main menu button at (x,y) coordinates */
 	function installMainMenuButton(x:Int, y:Int) {		
 		var mmButton:Button;
@@ -329,7 +396,9 @@ class GameDriver extends Sprite {
 		mmButton.y = y;
 
 		mmButton.addEventListener(Event.TRIGGERED, function(){
+			// send back to main menu
 			startScreen();
+			
 		});
 		
 		// Return main menu button
