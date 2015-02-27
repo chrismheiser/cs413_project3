@@ -305,7 +305,7 @@ class InteractiveAnswerManager extends Sprite{
 			var centerY = this.stage.stageHeight/2;
 			
 			var questionText = new TextField(450,40,data.question);
-				//questionText.fontName = "gamefont03";
+				questionText.fontName = "gamefont05";
 				questionText.autoSize = "center";
 				questionText.color = textColor;
 				questionText.bold = true;

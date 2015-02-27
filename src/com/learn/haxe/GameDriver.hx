@@ -1,4 +1,4 @@
-package com.learn.haxe;
+﻿package com.learn.haxe;
 
 import starling.animation.Tween;
 import starling.animation.Transitions;
@@ -104,6 +104,8 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/gameFont03.png");
 		assets.enqueue("assets/gameFont04.fnt");
 		assets.enqueue("assets/gameFont04.png");
+		assets.enqueue("assets/gameFont05.fnt");
+		assets.enqueue("assets/gameFont05.png");
 		
 		// game buttons
 		assets.enqueue("assets/startButton.png");
