@@ -93,6 +93,8 @@ class GameDriver extends Sprite {
 		assets.enqueue("assets/forestTrees.png");
 		assets.enqueue("assets/tutorialScreen.png");
 		assets.enqueue("assets/creditsScreen.png");
+		assets.enqueue("assets/mountHood.png");
+
 		
 
 		// game font
@@ -293,7 +295,7 @@ class GameDriver extends Sprite {
 		addChild(tutorialScreen);
 	
 		// Set and add mainMenu button
-		mainMenuButton = installMainMenuButton(570, 590);
+		mainMenuButton = installMainMenuButton(525, 550);
 		addChild(mainMenuButton);
 		return;
 	}
@@ -304,7 +306,7 @@ class GameDriver extends Sprite {
 		addChild(creditsScreen);
 	
 		// Set and add mainMenu button
-		mainMenuButton = installMainMenuButton(570, 590);
+		mainMenuButton = installMainMenuButton(525, 550);
 		addChild(mainMenuButton);	
 		return;
 	}
@@ -470,10 +472,10 @@ class GameDriver extends Sprite {
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
 			layers.push(new BackgroundLayer(assets.getTexture("forestBG"), 0, true));
+			layers.push(new BackgroundLayer(assets.getTexture("mountHood"), .2, true));
 			layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 0.5, true));
 			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 4, false));
 			layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 4, false));
-			//layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 10, false));
 			
 		
 		var cityBG = new LevelBackground(layers);
