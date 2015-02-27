@@ -202,7 +202,7 @@ class InteractiveAnswerManager extends Sprite{
 			answer.bold = true;
 			answer.color = 0xffffff;
 			answer.border = false;
-			answer.fontName = selectRandomFont();
+			answer.fontName = "gameFont02";
 			answer.fontSize = 32;
 			answer.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 		
