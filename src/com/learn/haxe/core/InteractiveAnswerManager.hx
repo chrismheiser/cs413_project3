@@ -39,7 +39,7 @@ class InteractiveAnswerManager extends Sprite{
 	var vx:Float = 0;
 	var vy:Float = 0;
 	var ay:Float = 0;
-	var gravity:Float = 0.25;
+	var gravity:Float = 0.1;
 	
 	// Text field answer list
 	var answerList:List<Sprite> = new List<Sprite>();
@@ -112,7 +112,7 @@ class InteractiveAnswerManager extends Sprite{
 		vy += gravity;
 		
 		if(keyMap.get( K_UP )){
-			vy -= 0.5;
+			vy -= 0.2;
 		}
 
 		//keeps the plane on the screen
