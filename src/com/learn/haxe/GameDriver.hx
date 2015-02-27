@@ -158,6 +158,9 @@ class GameDriver extends Sprite {
 		
 		// clear the stage
 		this.removeChildren();
+
+		var titleScreen = new Image(assets.getTexture("titleScreen"));
+		addChild(titleScreen);
 		
 		// set and display game title
 		gameTitleText = installGameText(0,0, "Plain Word Game", "gameFont04", 55);
