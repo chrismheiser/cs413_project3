@@ -205,7 +205,8 @@ class InteractiveAnswerManager extends Sprite{
 			answer.fontName = "gameFont02";
 			answer.fontSize = 32;
 			answer.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
-		
+			answer.alpha = 0.9;
+			
 		var bg = new Quad(answer.width, answer.height);
 			bg.alpha = 0.0;
 			bg.color = 0;
@@ -222,7 +223,7 @@ class InteractiveAnswerManager extends Sprite{
 		
 		Starling.juggler.tween(container, 5, {
 			transition: Transitions.LINEAR,
-			x: -100,
+			x: -300,
 			onComplete: function() {
 				this.removeChild(container,true);
 				answerList.remove(container);
@@ -304,13 +305,13 @@ class InteractiveAnswerManager extends Sprite{
 			var centerX = this.stage.stageWidth/2;
 			var centerY = this.stage.stageHeight/2;
 			
-			var questionText = new TextField(450,40,data.question);
+			var questionText = new TextField(1280,40,data.question);
 				questionText.fontName = "gamefont05";
 				questionText.autoSize = "center";
 				questionText.color = textColor;
 				questionText.bold = true;
-				questionText.fontSize = 32;
-				questionText.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
+				questionText.fontSize = 24;
+				//questionText.autoSize = TextFieldAutoSize.HORIZONTAL;
 				addChild(questionText);
 			
 			var bg = new Quad(questionText.width, questionText.height);

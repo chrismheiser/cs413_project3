@@ -225,7 +225,8 @@ class GameDriver extends Sprite {
 		
 
 		// set and add mainMenu button
-		mainMenuButton = installMainMenuButton(10 , 10);
+		mainMenuButton = installMainMenuButton(stage.stageWidth-70 , 10);
+		mainMenuButton.width = mainMenuButton.height = 60;
 		addChild(mainMenuButton);
 		
 		
