@@ -288,10 +288,10 @@ class GameDriver extends Sprite {
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
 		layers.push(new BackgroundLayer(assets.getTexture("fieldBG"), 0, true));
-		layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
-		layers.push(new BackgroundLayer(assets.getTexture("hillsBackground"), 4, false));
-		layers.push(new BackgroundLayer(assets.getTexture("hillsForeground"), 6, false));
-		layers.push(new BackgroundLayer(assets.getTexture("grass"), 12, false));
+		layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 0.5, true));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsBackground"), 2, false));
+		layers.push(new BackgroundLayer(assets.getTexture("hillsForeground"), 3, false));
+		layers.push(new BackgroundLayer(assets.getTexture("grass"), 5, false));
 
 		var fieldBG = new LevelBackground(layers);
 
@@ -306,9 +306,9 @@ class GameDriver extends Sprite {
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
 		layers.push(new BackgroundLayer(assets.getTexture("desertBG"), 0, true));
-		layers.push(new BackgroundLayer(assets.getTexture("mountainsBG"), 1, false));
-		layers.push(new BackgroundLayer(assets.getTexture("mountainsFG"), 2, false));
-		layers.push(new BackgroundLayer(assets.getTexture("desertFloor"), 12, false));
+		layers.push(new BackgroundLayer(assets.getTexture("mountainsBG"), 0.5, false));
+		layers.push(new BackgroundLayer(assets.getTexture("mountainsFG"), 1, false));
+		layers.push(new BackgroundLayer(assets.getTexture("desertFloor"), 0.5, false));
 
 		var desertBG = new LevelBackground(layers);
 
@@ -323,9 +323,9 @@ class GameDriver extends Sprite {
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), 1, true));
-			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
-			layers.push(new BackgroundLayer(assets.getTexture("road"), 12, false));
+			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), 0.5, true));
+			layers.push(new BackgroundLayer(assets.getTexture("city"), 2.5, false));
+			layers.push(new BackgroundLayer(assets.getTexture("road"), 5, false));
 		
 		var cityBG = new LevelBackground(layers);
 
@@ -338,9 +338,9 @@ class GameDriver extends Sprite {
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
 			layers.push(new BackgroundLayer(assets.getTexture("forestBG"), 0, true));
-			layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
-			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 8, false));
-			layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 8, false));
+			layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 0.5, true));
+			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 4, false));
+			layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 4, false));
 			//layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 10, false));
 			
 		

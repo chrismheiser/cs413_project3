@@ -53,6 +53,9 @@ class InteractiveAnswerManager extends Sprite{
 	public var gameOver:Bool->Void = null;
 	public var textColor:UInt = 0x000000;
 	
+	// Timer to spawn the objects
+	var spawner:Timer = null;
+	
 	function new( healthBarTexture:Texture, planeTexture:Texture, answerObject:Dynamic, rightAnswerSound:Sound, wrongAnswerSound:Sound ){
 		super();
 		this.answerObject = answerObject;
@@ -77,8 +80,13 @@ class InteractiveAnswerManager extends Sprite{
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 			this.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
-			var spawner = new Timer(700);
-				spawner.run = spawnAnswer;	
+			spawner = new Timer(700);
+			spawner.run = spawnAnswer;	
+		});
+		
+		this.addEventListener(Event.REMOVED_FROM_STAGE, function(){
+			if(spawner != null)
+				spawner.stop();
 		});
 		
 		plane = new Image(planeTexture);
