@@ -51,6 +51,7 @@ class InteractiveAnswerManager extends Sprite{
 	
 	// Callback when the game is over
 	public var gameOver:Bool->Void = null;
+	public var gameWin:Bool->Void = null;
 	public var textColor:UInt = 0x000000;
 	
 	// Timer to spawn the objects
@@ -223,6 +224,10 @@ class InteractiveAnswerManager extends Sprite{
 			rightAnsSound.play();
 			healthBar.animateBarSpan(currentSpan + 0.1, 0.015);
 			healthBar.flashColor(0x00FF00, 30);
+
+			if(healthBar.getBarSpan() == 1){
+				gameWin(true);
+			}
 			displayNextQuestion();
 		} else {
 			wrongAnsSound.play();
