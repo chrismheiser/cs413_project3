@@ -1,4 +1,4 @@
-﻿package com.learn.haxe;
+package com.learn.haxe;
 
 import starling.animation.Tween;
 import starling.animation.Transitions;
@@ -178,6 +178,14 @@ class GameDriver extends Sprite {
 		startButton = installStartGameButton(460, 590);
 		addChild(startButton);
 		
+		tutorialButton = installTutorialButton(490, 590);
+		addChild(tutorialButton);
+		
+		creditsButton = installCreditsButton(520, 590);
+		addChild(creditsButton);
+		
+		
+		
 		return;
 	}
 	
@@ -204,7 +212,7 @@ class GameDriver extends Sprite {
 
 		// set and add mainMenu button
 		mainMenuButton = installMainMenuButton(10 , 10);
-		addChild(mainMenuButton);
+		addChild(mainMenuButton2);
 		
 		
 		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
