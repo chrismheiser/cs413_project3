@@ -295,4 +295,19 @@ class InteractiveAnswerManager extends Sprite{
 	public function getHealthBar(){
 		return this.healthBar;
 	}
+	
+	public function BackgroundTransition(fadesOutBG:LevelBackground, fadesInBG:LevelBackground){
+			Starling.juggler.tween(fadesOutBG, 3, {
+					transition: Transitions.EASE_OUT,
+					delay: 1,
+					alpha: 0,
+					onComplete: function() {
+					this.removeChild(fadesOutBG);
+					this.addChild(fadesInBG);
+					Starling.juggler.tween(fadesInBG, 1, {
+						transition: Transitions.EASE_IN,
+						delay: 1,
+						alpha: 1,
+					}});
+		}
 }
