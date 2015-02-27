@@ -82,8 +82,7 @@ class InteractiveAnswerManager extends Sprite{
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 			this.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
-			spawner = new Timer(700);
-			spawner.run = spawnAnswer;	
+			spawnAnswer();	
 		});
 		
 		this.addEventListener(Event.REMOVED_FROM_STAGE, function(){
@@ -182,6 +181,18 @@ class InteractiveAnswerManager extends Sprite{
 	
 	/** Spawn a new potential answer box */
 	private function spawnAnswer(){
+		if(spawner != null)
+			spawner.stop();
+		
+		if(answerList.last() != null && answerList.last().x + answerList.last().width > stage.stageWidth - 20){
+			spawner = new Timer(100);
+			spawner.run = spawnAnswer;
+			return;
+		}
+		
+		spawner = new Timer(500);
+		spawner.run = spawnAnswer;
+		
 		// Choose the text for the word...
 		var answers = answerObject[questionIndex].answers;
 		var text = (Math.floor(Math.random()*6)==0) ? answers[0] : answers[Math.round(Math.random()*(answers.length-2))+1];
@@ -209,7 +220,7 @@ class InteractiveAnswerManager extends Sprite{
 		
 		answerList.add(container);
 		
-		Starling.juggler.tween(container, 8, {
+		Starling.juggler.tween(container, 5, {
 			transition: Transitions.LINEAR,
 			x: -100,
 			onComplete: function() {
