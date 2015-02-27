@@ -37,6 +37,8 @@ class GameDriver extends Sprite {
 	// Global Game vars
 	// text vars
 	public var gameTitleText:TextField;
+	public var loseText:TextField;
+	public var winText:TextField;
 	
 	// interactive buttons
 	public var startButton:Button;
@@ -245,7 +247,8 @@ class GameDriver extends Sprite {
 
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
-			var loseText = installGameText(0,100, "You lose!", "gameFont04", 100);
+			
+			loseText = installGameText(0, 325, "You lose!", "gameFont01", 65);
 			addChild(loseText);
 			
 			Starling.juggler.tween(bg, 5, {
@@ -271,7 +274,8 @@ class GameDriver extends Sprite {
 
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
-			var loseText = installGameText(0,100, "You Win!", "gameFont04", 100);
+			
+			winText = installGameText(0,325, "You Win!", "gameFont04", 65);
 			addChild(loseText);
 			
 			Starling.juggler.tween(bg, 5, {
