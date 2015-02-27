@@ -212,6 +212,7 @@ class GameDriver extends Sprite {
 		
 		answerManager.textColor = 0xFFFFFF;
 		answerManager.gameOver = triggerGameOver;
+		answerManager.gameWin = triggerGameWin;
 		answerManager.shuffleQuestions();
 		addChild(answerManager);		
 		return;
@@ -238,6 +239,32 @@ class GameDriver extends Sprite {
 					alpha: 0,
 					onComplete: function() {
 					restartGame();
+				}});
+		}
+	}
+
+
+
+	private function triggerGameWin(winGame:Bool) {
+		if (winGame){
+			this.removeChildren();
+
+			var bg = new Image(assets.getTexture("titleScreen"));
+			addChild(bg);
+			var looseText = installGameText(0,100, "You Win!", "gameFont04", 100);
+			addChild(looseText);
+			
+			Starling.juggler.tween(bg, 5, {
+					transition: Transitions.EASE_OUT,
+					delay: 1,
+					alpha: 0,
+				});
+			Starling.juggler.tween(looseText, 5, {
+					transition: Transitions.EASE_OUT,
+					delay: 1,
+					alpha: 0,
+					onComplete: function() {
+					startGame();
 				}});
 		}
 	}
