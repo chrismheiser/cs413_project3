@@ -57,6 +57,7 @@ class InteractiveAnswerManager extends Sprite{
 	
 	// Timer to spawn the objects
 	var spawner:Timer = null;
+	public var paused:Bool = false;
 	
 	function new( healthBarTexture:Texture, planeTexture:Texture, answerObject:Dynamic, rightAnswerSound:Sound, wrongAnswerSound:Sound ){
 		super();
@@ -82,7 +83,8 @@ class InteractiveAnswerManager extends Sprite{
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 			this.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
-			spawnAnswer();	
+			spawner = new Timer(500);
+			spawner.run = spawnAnswer;
 		});
 		
 		this.addEventListener(Event.REMOVED_FROM_STAGE, function(){
@@ -95,6 +97,8 @@ class InteractiveAnswerManager extends Sprite{
 		plane.height = 50;
 		plane.pivotY = plane.height/2;
 		plane.pivotY = plane.width/2;
+		plane.x = 120;
+		plane.y = 300;
 		
 		addChild(plane);
 		
@@ -109,6 +113,9 @@ class InteractiveAnswerManager extends Sprite{
 	}
 	
 	public function onEnterFrame(event:EnterFrameEvent){
+		if(paused)
+			return;
+			
 		// Apply the y velocity
 		vy += gravity;
 		
@@ -181,6 +188,9 @@ class InteractiveAnswerManager extends Sprite{
 	
 	/** Spawn a new potential answer box */
 	private function spawnAnswer(){
+		if(paused)
+			return;
+			
 		if(spawner != null)
 			spawner.stop();
 		

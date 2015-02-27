@@ -54,11 +54,13 @@ class GameDriver extends Sprite {
 	public var plane:Image;
 	var pTween:Tween;
 
-
 	// Sound variables
-		var musicChannel:SoundChannel;	
-		var transform:SoundTransform;
-		
+	var musicChannel:SoundChannel;	
+	var transform:SoundTransform;
+	
+	// Game Class
+	var answerManager:InteractiveAnswerManager = null;
+	
 	/** Constructor */
 	public function new() {
 		super();
@@ -172,7 +174,6 @@ class GameDriver extends Sprite {
 	private function startScreen() {
 		// click sound
 		assets.playSound("click");
-		
 		// clear the stage
 		this.removeChildren();
 
@@ -223,14 +224,13 @@ class GameDriver extends Sprite {
 			startFieldLevel();
 		}
 		
-
 		// set and add mainMenu button
 		mainMenuButton = installMainMenuButton(stage.stageWidth-70 , 10);
 		mainMenuButton.width = mainMenuButton.height = 60;
 		addChild(mainMenuButton);
 		
 		
-		var answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
+		answerManager = new InteractiveAnswerManager( assets.getTexture("healthBar"), assets.getTexture("plane"), assets.getObject("questions"), 
 			assets.getSound("right_answer"), assets.getSound("wrong_answer") );
 		
 		answerManager.textColor = 0xFFFFFF;
@@ -245,33 +245,38 @@ class GameDriver extends Sprite {
 	private function triggerGameOver(loseGame:Bool) {
 		if (loseGame){
 			this.removeChildren();
-
+			restartGame();
+			answerManager.paused = true;
+			
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
 			
 			loseText = installGameText(0, 325, "You lose!", "gameFont01", 65);
 			addChild(loseText);
 			
-			Starling.juggler.tween(bg, 5, {
+			Starling.juggler.tween(bg, 2, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
 					alpha: 0,
+					onComplete: function(){
+						answerManager.paused = false;
+					}
 				});
-			Starling.juggler.tween(loseText, 5, {
+
+			Starling.juggler.tween(loseText, 2, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
-					alpha: 0,
-					onComplete: function() {
-					restartGame();
-				}});
+					alpha: 0
+			});
 		}
 	}
-
 
 
 	private function triggerGameWin(winGame:Bool) {
 		if (winGame){
 			this.removeChildren();
+			restartGame();
+			answerManager.paused = true;
 
 			var bg = new Image(assets.getTexture("titleScreen"));
 			addChild(bg);
@@ -279,18 +284,19 @@ class GameDriver extends Sprite {
 			winText = installGameText(0,325, "You Win!", "gameFont04", 65);
 			addChild(loseText);
 			
-			Starling.juggler.tween(bg, 5, {
-					transition: Transitions.EASE_OUT,
+			Starling.juggler.tween(bg, 2, {
+					transition: Transitions.LINEAR,
 					delay: 1,
 					alpha: 0,
+					onComplete: function(){
+						answerManager.paused = false;
+					}
 				});
-			Starling.juggler.tween(loseText, 5, {
+			Starling.juggler.tween(loseText, 2, {
 					transition: Transitions.EASE_OUT,
 					delay: 1,
-					alpha: 0,
-					onComplete: function() {
-					startGame();
-				}});
+					alpha: 0
+			});
 		}
 	}
 	
@@ -347,6 +353,7 @@ class GameDriver extends Sprite {
 		sgButton = new Button(GameDriver.assets.getTexture("startButton"));
 		sgButton.x = x;
 		sgButton.y = y;
+		
 		
 		// On button press, display game screen
 		sgButton.addEventListener(Event.TRIGGERED, function() {
