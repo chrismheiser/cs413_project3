@@ -339,7 +339,7 @@ class GameDriver extends Sprite {
 		var layers:Array<BackgroundLayer> = new Array();
 			layers.push(new BackgroundLayer(assets.getTexture("forestBG"), 0, true));
 			layers.push(new BackgroundLayer(assets.getTexture("clouds2"), 1, true));
-			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 5, false));
+			layers.push(new BackgroundLayer(assets.getTexture("forestFloor"), 8, false));
 			layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 8, false));
 			//layers.push(new BackgroundLayer(assets.getTexture("forestTrees"), 10, false));
 			

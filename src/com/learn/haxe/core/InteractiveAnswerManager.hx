@@ -47,23 +47,38 @@ class InteractiveAnswerManager extends Sprite{
 	// Display assets
 	var plane:Image;
 	var healthBar:HealthBar;
-	var questionText:TextField = null;
+	var questionText:Sprite = null;
 	
 	// Callback when the game is over
 	public var gameOver:Bool->Void = null;
 	public var textColor:UInt = 0x000000;
 	
-	
 	function new( healthBarTexture:Texture, planeTexture:Texture, answerObject:Dynamic, rightAnswerSound:Sound, wrongAnswerSound:Sound ){
 		super();
 		this.answerObject = answerObject;
 		this.addEventListener(Event.ADDED_TO_STAGE, function(){
+			healthBar = new HealthBar(400,25,healthBarTexture);
+			healthBar.defaultColor = healthBar.color;
+			healthBar.x = this.stage.stageWidth/2 - healthBar.maxWidth/2;
+			healthBar.y = 25;
+			
+			var tHealthbar = new Image(healthBarTexture);
+				tHealthbar.width = healthBar.maxWidth;
+				tHealthbar.height = healthBar.height;
+				tHealthbar.x = healthBar.x;
+				tHealthbar.y = healthBar.y;
+				tHealthbar.alpha = 0.2;
+				
+			addChild(tHealthbar);
+			addChild(healthBar);
+			
+			
 			displayNextQuestion();
 			this.addEventListener(EnterFrameEvent.ENTER_FRAME, onEnterFrame);
 			this.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			this.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 			var spawner = new Timer(700);
-				spawner.run = spawnAnswer;
+				spawner.run = spawnAnswer;	
 		});
 		
 		plane = new Image(planeTexture);
@@ -72,13 +87,6 @@ class InteractiveAnswerManager extends Sprite{
 		plane.pivotY = plane.height/2;
 		plane.pivotY = plane.width/2;
 		
-		healthBar = new HealthBar(200,40,healthBarTexture);
-		healthBar.defaultColor = healthBar.color;
-		healthBar.y = 50;
-		healthBar.x = 500;
-		
-		
-		addChild(healthBar);
 		addChild(plane);
 		
 		rightAnsSound = rightAnswerSound;
@@ -250,12 +258,27 @@ class InteractiveAnswerManager extends Sprite{
 			var centerX = this.stage.stageWidth/2;
 			var centerY = this.stage.stageHeight/2;
 			
-			questionText = new TextField(400,35,data.question);
-			questionText.x = centerX - questionText.width/2;
-			questionText.y = centerY - questionText.height/2;
-			questionText.color = textColor;
-			questionText.bold = true;
-			addChild(questionText);
+			var questionText = new TextField(450,40,data.question);
+				questionText.autoSize = "center";
+				questionText.color = textColor;
+				questionText.bold = true;
+				addChild(questionText);
+			
+			var bg = new Quad(questionText.width, questionText.height);
+				bg.alpha = 0.3;
+				bg.color = 0;
+				
+			var container = new Sprite();
+				container.width = questionText.width;
+				container.height = questionText.height;
+				container.x = centerX - questionText.width/2;
+				container.y = centerY - questionText.height/2;
+								
+			container.addChild(bg);
+			container.addChild(questionText);
+			addChildAt(container,0);
+			
+			this.questionText = container;
 		}
 	}
 	

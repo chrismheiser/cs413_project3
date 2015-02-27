@@ -8,7 +8,7 @@ import haxe.Timer;
 
 class HealthBar extends starling.display.Image {
 	
-	var maxWidth:Int;
+	public var maxWidth:Int;
 	var fillPercent:Float = 1.0;
 	var animationTimer:Timer = null;
 	public var defaultColor:UInt;
