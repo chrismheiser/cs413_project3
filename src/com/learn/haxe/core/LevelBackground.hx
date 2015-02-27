@@ -34,7 +34,6 @@ class LevelBackground extends Sprite{
 			if (layers[i].x < -stage.stageWidth){
 				layers[i].x = 0;
 			}
-
 		}
 	}
 

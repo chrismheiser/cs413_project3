@@ -7,6 +7,7 @@ import starling.textures.Texture;
 import starling.display.Sprite;
 import starling.utils.AssetManager;
 import starling.display.Image;
+import starling.display.Quad;
 import starling.core.Starling;
 import starling.animation.Transitions;
 import starling.events.KeyboardEvent;
@@ -58,9 +59,16 @@ class GameDriver extends Sprite {
 	private function populateAssetManager() {
 		assets = new AssetManager();
 		assets.enqueue("assets/questions.json");
-		assets.enqueue("assets/textures.png");
-		assets.enqueue("assets/textures.xml");
+		
+		// Dont use textures until the game is finished!
+		//assets.enqueue("assets/textures.png");
+		//assets.enqueue("assets/textures.xml");
 
+		assets.enqueue("assets/spaceBG.png");
+		assets.enqueue("assets/city.png");
+		assets.enqueue("assets/plane.png");
+		assets.enqueue("assets/healthBar.png");
+	
 		
 		// game font
 		assets.enqueue("assets/gameFont01.fnt");
@@ -97,10 +105,10 @@ class GameDriver extends Sprite {
 			if (ratio == 1) {
 			
 				//Start the game music
-				musicChannel = assets.playSound("game_music");
-				musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
-				transform = new SoundTransform(0.3, 0);
-				musicChannel.soundTransform = transform;
+				//musicChannel = assets.playSound("game_music");
+				//musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+				//transform = new SoundTransform(0.3, 0);
+				//musicChannel.soundTransform = transform;
 				
 				startScreen();
 				
@@ -227,9 +235,9 @@ class GameDriver extends Sprite {
 	/** Start the music after it's finished playing */
 	function soundComplete(e:flash.events.Event)
 	{
-		musicChannel = assets.playSound("game_music");
-		musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
-		musicChannel.soundTransform = transform;
+		//musicChannel = assets.playSound("game_music");
+		//musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+		//musicChannel.soundTransform = transform;
 	}
 
 /*
@@ -257,11 +265,12 @@ class GameDriver extends Sprite {
 		//each level has a set of layers that needs to be created before the
 		//levelbackground is created
 		var layers:Array<BackgroundLayer> = new Array();
-		layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .005, true));
-		layers.push(new BackgroundLayer(assets.getTexture("city"), 5, false));
+			layers.push(new BackgroundLayer(assets.getTexture("spaceBG"), .1, true));
+			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, true));
 		
-
 		var cityBG = new LevelBackground(layers);
+			cityBG.addChild(new Quad(stage.stageWidth, stage.stageHeight, 0x111111));
+
 		addChild(cityBG);
 	}
 }

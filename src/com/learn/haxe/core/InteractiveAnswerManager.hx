@@ -208,7 +208,7 @@ class InteractiveAnswerManager extends Sprite{
 			displayNextQuestion();
 		} else {
 			wrongAnsSound.play();
-			healthBar.animateBarSpan(currentSpan - 0.1, 0.015);
+			healthBar.animateBarSpan(currentSpan - 0.3, 0.015);
 			healthBar.flashColor(0xFF0000, 30);
 			
 			if(healthBar.getBarSpan() < 0.1 && gameOver != null){
