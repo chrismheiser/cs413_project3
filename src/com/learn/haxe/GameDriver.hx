@@ -79,6 +79,12 @@ class GameDriver extends Sprite {
 			if (ratio == 1) {	
 				startScreen();
 
+				//Start the game music
+				musicChannel = assets.playSound("game_music");
+				musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+				transform = new SoundTransform(0.3, 0);
+				musicChannel.soundTransform = transform;
+
 				// Fade out the plane in loading screen since everything is loaded
 				Starling.juggler.tween(startup.loadingPlaneBitmap, 1, {
 					transition: Transitions.EASE_OUT,
@@ -227,6 +233,14 @@ class GameDriver extends Sprite {
 	private function restartGame(){
 		this.removeChildren();
 		startGame();
+	}
+
+		/** Start the music after it's finished playing */
+	function soundComplete(e:flash.events.Event)
+	{
+		musicChannel = assets.playSound("game_music");
+		musicChannel.addEventListener(flash.events.Event.SOUND_COMPLETE, soundComplete);
+		musicChannel.soundTransform = transform;
 	}
 	
 	private function installGameText(x:Int, y:Int, myText:String, myFont:String, myFontsize:Int) {
