@@ -202,7 +202,7 @@ class InteractiveAnswerManager extends Sprite{
 			answer.bold = true;
 			answer.color = 0xffffff;
 			answer.border = false;
-			answer.fontName = "gameFont04";
+			answer.fontName = selectRandomFont();
 			answer.fontSize = 32;
 			answer.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 		
@@ -228,6 +228,24 @@ class InteractiveAnswerManager extends Sprite{
 				answerList.remove(container);
 			}
 		});
+	}	
+	public function selectRandomFont() {
+		// local var
+		var fontName:String;
+		
+		var dice = Math.random();
+		
+		if (dice < 0.33) {
+			fontName = "gameFont01";
+		}
+		else if (dice < 0.66) {
+			fontName = "gameFont02";
+		}
+		else {
+			fontName = "gameFont03";
+		}
+		
+		return fontName;
 	}
 	
 	public function processAnswer(text:String){
