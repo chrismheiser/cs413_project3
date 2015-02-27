@@ -159,8 +159,16 @@ class GameDriver extends Sprite {
 		// clear the stage
 		this.removeChildren();
 
-		var titleScreen = new Image(assets.getTexture("titleScreen"));
-		addChild(titleScreen);
+		//var titleScreen = new Image(assets.getTexture("titleScreen"));
+		//addChild(titleScreen);
+		
+		startDesertLevel();
+		
+		var alphaQuad = new Quad(stage.stageWidth, stage.stageHeight);
+			alphaQuad.color = 0x888899;
+			alphaQuad.alpha = 0.1;
+		
+		addChild(alphaQuad);
 		
 		// set and display game title
 		gameTitleText = installGameText(0,0, "Plain Word Game", "gameFont04", 55);
@@ -313,8 +321,6 @@ class GameDriver extends Sprite {
 		var desertBG = new LevelBackground(layers);
 
 		addChild(desertBG);
-	
-
 	}
 	
 
