@@ -185,13 +185,15 @@ class InteractiveAnswerManager extends Sprite{
 		var text = (Math.floor(Math.random()*6)==0) ? answers[0] : answers[Math.round(Math.random()*(answers.length-2))+1];
 		
 		// Fade out the loading screen since everything is loaded
-		var answer = new TextField(100,30,text);
+		var answer = new TextField(130,50,text);
 			answer.bold = true;
-			answer.color = textColor;
-			answer.border = true;
+			answer.color = 0xffffff;
+			answer.border = false;
+			answer.fontName = "gameFont04";
+			answer.fontSize = 32;
 		
 		var bg = new Quad(answer.width, answer.height);
-			bg.alpha = 0.7;
+			bg.alpha = 0.0;
 			bg.color = 0;
 		
 		var container = new Sprite();
