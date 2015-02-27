@@ -269,7 +269,7 @@ class GameDriver extends Sprite {
 			layers.push(new BackgroundLayer(assets.getTexture("city"), 5, true));
 		
 		var cityBG = new LevelBackground(layers);
-			cityBG.addChild(new Quad(stage.stageWidth, stage.stageHeight, 0x111111));
+			//cityBG.addChild(new Quad(stage.stageWidth, stage.stageHeight, 0x111111));
 
 		addChild(cityBG);
 	}
